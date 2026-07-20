@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SphereMessage — Feel who's around you</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sphere-black': '#0A0714',
+                        'sphere-panel': '#140F26',
+                        'sphere-panel2': '#1C1538',
+                        'sphere-pink': '#FF3D71',
+                        'sphere-violet': '#8B5CF6',
+                        'sphere-lavender': '#A79BC7',
+                        'sphere-white': '#F5F3FF',
+                    },
+                    fontFamily: {
+                        display: ['Unbounded', 'sans-serif'],
+                        body: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        body {
+            background-color: #0A0714;
+        }
+
+        .bg-radial-glow {
+            background: radial-gradient(60% 60% at 50% 35%, rgba(139, 92, 246, 0.28) 0%, rgba(10, 7, 20, 0) 70%);
+        }
+
+        .bg-grid {
+            background-image: linear-gradient(rgba(167, 155, 199, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(167, 155, 199, 0.06) 1px, transparent 1px);
+            background-size: 44px 44px;
+        }
+
+        /* Radar sweep signature */
+        .radar {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            max-width: 460px;
+            margin: 0 auto;
+            border-radius: 9999px;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.10), rgba(10, 7, 20, 0) 70%);
+        }
+
+        .radar-ring {
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(167, 155, 199, 0.18);
+            border-radius: 9999px;
+        }
+
+        .radar-ring.r1 {
+            inset: 12%;
+        }
+
+        .radar-ring.r2 {
+            inset: 28%;
+        }
+
+        .radar-ring.r3 {
+            inset: 44%;
+        }
+
+        .radar-sweep {
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: conic-gradient(from 0deg, rgba(255, 61, 113, 0.55), rgba(255, 61, 113, 0) 28%);
+            animation: spin 4.5s linear infinite;
+            mix-blend-mode: screen;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .blip {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 9999px;
+            background: #FF3D71;
+            box-shadow: 0 0 0 0 rgba(255, 61, 113, 0.6);
+            animation: ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        .blip.violet {
+            background: #8B5CF6;
+            box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.6);
+        }
+
+        @keyframes ping {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 61, 113, 0.55);
+            }
+
+            70% {
+                box-shadow: 0 0 0 14px rgba(255, 61, 113, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 61, 113, 0);
+            }
+        }
+
+        .card-glow:hover {
+            box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.4), 0 20px 60px -20px rgba(139, 92, 246, 0.35);
+        }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.02em;
+        }
+
+        .tw-line {
+            white-space: pre-wrap;
+        }
+
+        .tw-headline {
+            min-height: 5rem;
+        }
+
+        @media (min-width: 640px) {
+            .tw-headline {
+                min-height: 6rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .tw-headline {
+                min-height: 7.85rem;
+            }
+        }
+
+        .tw-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 0.8em;
+            background: #FF3D71;
+            margin-left: 3px;
+            vertical-align: -0.08em;
+            animation: tw-blink 0.9s step-start infinite;
+            box-shadow: 0 0 8px 1px rgba(255, 61, 113, 0.6);
+        }
+
+        .tw-cursor.tw-done {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        @keyframes tw-blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .tw-cursor {
+                display: none;
+            }
+        }
+
+        ::selection {
+            background: #FF3D71;
+            color: #0A0714;
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: var(--reveal-delay, 0s);
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-scale.is-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Parallax layers */
+        [data-parallax] {
+            will-change: transform;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .radar-sweep,
+            .blip {
+                animation: none !important;
+            }
+
+            .reveal,
+            .reveal-scale {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+
+            [data-parallax] {
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-body text-sphere-white antialiased">
+
+    <!-- NAV -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-sphere-black/70 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sphere-pink to-sphere-violet">
+                    <img src="./images/logo.jpeg" class="object-cover rounded-full" alt="">
+                </div>
+                <span class="font-display font-bold text-lg tracking-tight">Sphere<span
+                        class="text-sphere-pink">Message</span></span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm text-sphere-lavender">
+                <a href="#how" class="hover:text-sphere-white transition">How it works</a>
+                <a href="#radar" class="hover:text-sphere-white transition">Sphere Radar</a>
+                <a href="#profile" class="hover:text-sphere-white transition">Profiles</a>
+                <a href="#feeds" class="hover:text-sphere-white transition">Feeds</a>
+            </nav>
+            <a href="#download"
+                class="text-sm font-semibold bg-sphere-white text-sphere-black px-4 py-2 rounded-full hover:bg-sphere-pink hover:text-white transition">Get
+                the app</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid" data-parallax="0.15"></div>
+        <div class="absolute inset-0 bg-radial-glow" data-parallax="0.3"></div>
+        <div
+            class="relative max-w-7xl mx-auto px-6 pt-16 pb-24 md:pt-24 md:pb-32 grid md:grid-cols-3 gap-14 items-center">
+            <div class="reveal is-visible lg:col-span-2 col-span-3">
+                <div
+                    class="inline-flex items-center gap-2 tag text-xs text-sphere-lavender border border-white/10 rounded-full px-3 py-1.5 mb-6">
+                    <span class="w-1.5 h-1.5 rounded-full bg-sphere-pink animate-pulse"></span>
+                    23 people are pinging near Yaba right now
+                </div>
+                <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight tw-headline"
+                    aria-label="Feel who's around you.">
+                    <span id="tw-line1" class="tw-line" aria-hidden="true"></span><span id="tw-cursor"
+                        class="tw-cursor"></span>
+                    <span
+                        class="block text-transparent bg-clip-text bg-gradient-to-r from-sphere-pink to-sphere-violet"><span
+                            id="tw-line2" class="tw-line" aria-hidden="true"></span></span>
+                </h1>
+                <p class="mt-6 text-lg text-sphere-lavender max-w-md">
+                    SphereMessage reads your vibe, your love language and what you're actually looking for — then puts
+                    you in front of the people nearby who match it. Built for Lagos energy.
+                </p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="#download"
+                        class="flex items-center gap-3 bg-white text-sphere-black rounded-2xl px-5 py-3 hover:bg-sphere-lavender transition">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17.03 2.94 12.6 4.66 9.62c.86-1.48 2.4-2.41 4.07-2.44 1.29-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.27-2.15 3.79.03 3.02 2.65 4.02 2.68 4.03-.02.07-.42 1.44-1.39 2.86-.83 1.24-1.71 2.45-3.05 2.47M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z" />
+                        </svg>
+                        <span class="text-left leading-tight">
+                            <span class="block text-[10px] font-medium text-sphere-black/60 tag">Coming soon on</span>
+                            <span class="block text-sm font-bold">App Store</span>
+                        </span>
+                    </a>
+                    <a href="#download"
+                        class="flex items-center gap-3 bg-white text-sphere-black rounded-2xl px-5 py-3 hover:bg-sphere-lavender transition">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M3.6 2.6a1 1 0 0 0-.6.9v17a1 1 0 0 0 .6.9l9.7-9.4-9.7-9.4Zm11.1 9.4-2.6-2.5L3.9 2.7l10.8 9.3Zm0 0-2.6 2.5L3.9 21.3l10.8-9.3Zm1-1.4 2.9-1.6c.7-.4.7-1.4 0-1.8l-2.9-1.6-2.7 2.5 2.7 2.5Z" />
+                        </svg>
+                        <span class="text-left leading-tight">
+                            <span class="block text-[10px] font-medium text-sphere-black/60 tag">Coming soon on</span>
+                            <span class="block text-sm font-bold">Google Play</span>
+                        </span>
+                    </a>
+                </div>
+                <p class="mt-4 text-xs text-sphere-lavender/70 tag">MVP beta rolling out first in Lagos.</p>
+            </div>
+
+            <!-- Radar signature -->
+            <div class="radar reveal-scale is-visible lg:col-span-1 col-span-3" data-parallax="-0.12">
+                <div class="radar-ring r1"></div>
+                <div class="radar-ring r2"></div>
+                <div class="radar-ring r3"></div>
+                <div class="radar-sweep"></div>
+                <div class="blip" style="top:20%; left:60%; animation-delay:0s;"></div>
+                <div class="blip violet" style="top:55%; left:22%; animation-delay:0.6s;"></div>
+                <div class="blip" style="top:70%; left:65%; animation-delay:1.2s;"></div>
+                <div class="blip violet" style="top:35%; left:38%; animation-delay:1.8s;"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-3 h-3 rounded-full bg-sphere-white shadow-[0_0_20px_6px_rgba(245,243,255,0.5)]"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-20">
+            <p class="tag text-xs text-sphere-pink mb-3 reveal">The flow</p>
+            <h2 class="font-display font-bold text-3xl md:text-4xl max-w-xl reveal">From a profile to a real hangout, in
+                three moves.</h2>
+            <div class="mt-14 grid md:grid-cols-3 gap-8">
+                <div class="relative pl-6 border-l border-white/10 reveal" style="--reveal-delay:0s">
+                    <span class="tag text-sphere-lavender/50 text-sm">01</span>
+                    <h3 class="font-display font-semibold text-xl mt-2">Profiles</h3>
+                    <p class="mt-3 text-sphere-lavender text-sm leading-relaxed">Set your hobbies, love language, vibe
+                        tags and what you're actually looking for. This is what every match is built on.</p>
+                </div>
+                <div class="relative pl-6 border-l border-sphere-violet/40 reveal" style="--reveal-delay:0.12s">
+                    <span class="tag text-sphere-lavender/50 text-sm">02</span>
+                    <h3 class="font-display font-semibold text-xl mt-2">Sphere Radar</h3>
+                    <p class="mt-3 text-sphere-lavender text-sm leading-relaxed">See who's around you right now, ranked
+                        by vibe match, not just distance. Switch "Nearby" on only when you want to be found.</p>
+                </div>
+                <div class="relative pl-6 border-l border-sphere-pink/40 reveal" style="--reveal-delay:0.24s">
+                    <span class="tag text-sphere-lavender/50 text-sm">03</span>
+                    <h3 class="font-display font-semibold text-xl mt-2">Feeds</h3>
+                    <p class="mt-3 text-sphere-lavender text-sm leading-relaxed">People nearby, events tonight,
+                        confessions around you. The feed is where a match turns into an actual plan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MATCHING ALGORITHMS -->
+    <section id="radar" class="border-t border-white/5 bg-sphere-panel/40">
+        <div class="max-w-7xl mx-auto px-6 py-20">
+            <p class="tag text-xs text-sphere-violet mb-3 reveal">What powers the match</p>
+            <h2 class="font-display font-bold text-3xl md:text-4xl max-w-xl reveal">Four signals decide who shows up on
+                your radar.</h2>
+
+            <div class="mt-12 grid md:grid-cols-2 gap-6">
+                <div class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal"
+                    style="--reveal-delay:0s">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🎧</span>
+                        <h3 class="font-display font-semibold text-lg">Hobbies</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Music</span>
+                        <span
+                            class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Football</span>
+                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Anime</span>
+                        <span
+                            class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Photography</span>
+                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Gym</span>
+                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">+ more</span>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal"
+                    style="--reveal-delay:0.1s">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">❤️</span>
+                        <h3 class="font-display font-semibold text-lg">Love languages</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="tag text-xs bg-sphere-pink/10 text-sphere-pink border border-sphere-pink/20 rounded-full px-3 py-1">Quality
+                            Time</span>
+                        <span
+                            class="tag text-xs bg-sphere-pink/10 text-sphere-pink border border-sphere-pink/20 rounded-full px-3 py-1">Gifts</span>
+                        <span
+                            class="tag text-xs bg-sphere-pink/10 text-sphere-pink border border-sphere-pink/20 rounded-full px-3 py-1">Words
+                            of Affirmation</span>
+                        <span
+                            class="tag text-xs bg-sphere-pink/10 text-sphere-pink border border-sphere-pink/20 rounded-full px-3 py-1">Physical
+                            Touch</span>
+                        <span
+                            class="tag text-xs bg-sphere-pink/10 text-sphere-pink border border-sphere-pink/20 rounded-full px-3 py-1">Acts
+                            of Service</span>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal"
+                    style="--reveal-delay:0.2s">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🎯</span>
+                        <h3 class="font-display font-semibold text-lg">Looking for</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Friendship</span>
+                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Dating</span>
+                        <span
+                            class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Networking</span>
+                        <span
+                            class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Hangouts</span>
+                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Friends with
+                            Benefit</span>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal"
+                    style="--reveal-delay:0.3s">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">✨</span>
+                        <h3 class="font-display font-semibold text-lg">Vibe tags</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="tag text-xs bg-sphere-violet/10 text-sphere-violet border border-sphere-violet/20 rounded-full px-3 py-1">Funny</span>
+                        <span
+                            class="tag text-xs bg-sphere-violet/10 text-sphere-violet border border-sphere-violet/20 rounded-full px-3 py-1">Deep
+                            Thinker</span>
+                        <span
+                            class="tag text-xs bg-sphere-violet/10 text-sphere-violet border border-sphere-violet/20 rounded-full px-3 py-1">Soft
+                            Life</span>
+                        <span
+                            class="tag text-xs bg-sphere-violet/10 text-sphere-violet border border-sphere-violet/20 rounded-full px-3 py-1">Tech
+                            Bro</span>
+                        <span
+                            class="tag text-xs bg-sphere-violet/10 text-sphere-violet border border-sphere-violet/20 rounded-full px-3 py-1">Spiritual</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sphere Questions -->
+            <div class="mt-16 reveal">
+                <p class="tag text-xs text-sphere-pink mb-3">Sphere Questions</p>
+                <h3 class="font-display font-semibold text-2xl mb-6">The questions that say more than a bio ever could.
+                </h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-5 text-sm text-sphere-lavender reveal"
+                        style="--reveal-delay:0s">"Biggest green flag?"</div>
+                    <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-5 text-sm text-sphere-lavender reveal"
+                        style="--reveal-delay:0.08s">"What instantly attracts you?"</div>
+                    <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-5 text-sm text-sphere-lavender reveal"
+                        style="--reveal-delay:0.16s">"Ideal first hangout?"</div>
+                    <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-5 text-sm text-sphere-lavender reveal"
+                        style="--reveal-delay:0.24s">"What's your toxic trait?"</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFILE SHOWCASE -->
+    <section id="profile" class="border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-14 items-center">
+            <div class="reveal">
+                <p class="tag text-xs text-sphere-violet mb-3">Your profile</p>
+                <h2 class="font-display font-bold text-3xl md:text-4xl mb-6">A profile that reads like a person, not a
+                    form.</h2>
+                <p class="text-sphere-lavender mb-8 max-w-md">Three photos, a voice intro, your vibes up top, and
+                    receipts to back it up — profile visits, hangouts attended, and where you rank in your area.</p>
+                <div class="flex gap-8">
+                    <div>
+                        <p class="font-display font-bold text-2xl">1.2k</p>
+                        <p class="tag text-xs text-sphere-lavender">🔥 profile visits</p>
+                    </div>
+                    <div>
+                        <p class="font-display font-bold text-2xl">230</p>
+                        <p class="tag text-xs text-sphere-lavender">💬 interests received</p>
+                    </div>
+                    <div>
+                        <p class="font-display font-bold text-2xl">12</p>
+                        <p class="tag text-xs text-sphere-lavender">🎉 hangouts attended</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile card mock -->
+            <div class="rounded-[2rem] bg-gradient-to-b from-sphere-panel2 to-sphere-panel border border-white/10 p-6 max-w-sm mx-auto shadow-2xl shadow-black/40 reveal-scale"
+                data-parallax="-0.08" style="--reveal-delay:0.15s">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sphere-pink to-sphere-violet"></div>
+                        <div>
+                            <p class="font-display font-semibold">Ada, 23</p>
+                            <p class="tag text-xs text-sphere-lavender">📍 Around Yaba</p>
+                        </div>
+                    </div>
+                    <span class="tag text-xs flex items-center gap-1 text-emerald-400"><span
+                            class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Online</span>
+                </div>
+                <p class="italic text-sphere-lavender text-sm mb-4">"Soft life + deep conversations."</p>
+                <div class="space-y-2 text-sm mb-4">
+                    <p><span class="text-sphere-pink">❤️ Love Language</span> — Quality Time · Words</p>
+                    <p><span class="text-sphere-violet">🎯 Looking For</span> — Friendship · Dating · Hangouts</p>
+                    <p><span class="text-sphere-lavender">✨ Vibes</span> — Funny · Creative · Night Owl</p>
+                    <p><span class="text-sphere-lavender">🎵 Interests</span> — Music · Fashion · Beach · Anime</p>
+                </div>
+                <p class="tag text-xs text-sphere-lavender/70 mb-5">🎤 Voice intro available · 📸 Photos · 🎥 Moments ·
+                    📝 Sphere Questions</p>
+                <div class="flex gap-2">
+                    <button
+                        class="flex-1 bg-sphere-pink text-white text-sm font-semibold rounded-xl py-2.5 hover:brightness-110 transition">Send
+                        Interest</button>
+                    <button
+                        class="px-3 bg-white/5 border border-white/10 rounded-xl text-sm hover:bg-white/10 transition">👋</button>
+                    <button
+                        class="px-3 bg-white/5 border border-white/10 rounded-xl text-sm hover:bg-white/10 transition">🎉</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEEDS -->
+    <section id="feeds" class="border-t border-white/5 bg-sphere-panel/40">
+        <div class="max-w-7xl mx-auto px-6 py-20">
+            <p class="tag text-xs text-sphere-pink mb-3 reveal">The feed</p>
+            <h2 class="font-display font-bold text-3xl md:text-4xl mb-12 max-w-xl reveal">Everything happening near you,
+                in one scroll.</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-6 card-glow transition reveal"
+                    style="--reveal-delay:0s">
+                    <p class="text-2xl mb-3">🔥</p>
+                    <p class="font-display font-semibold text-sm">People Nearby</p>
+                </div>
+                <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-6 card-glow transition reveal"
+                    style="--reveal-delay:0.08s">
+                    <p class="text-2xl mb-3">🎉</p>
+                    <p class="font-display font-semibold text-sm">Events Tonight</p>
+                </div>
+                <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-6 card-glow transition reveal"
+                    style="--reveal-delay:0.16s">
+                    <p class="text-2xl mb-3">👀</p>
+                    <p class="font-display font-semibold text-sm">Someone Viewed You</p>
+                </div>
+                <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-6 card-glow transition reveal"
+                    style="--reveal-delay:0.24s">
+                    <p class="text-2xl mb-3">🫣</p>
+                    <p class="font-display font-semibold text-sm">Confessions Around You</p>
+                </div>
+                <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-6 card-glow transition reveal"
+                    style="--reveal-delay:0.32s">
+                    <p class="text-2xl mb-3">✨</p>
+                    <p class="font-display font-semibold text-sm">Trending People</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD CTA -->
+    <section id="download" class="relative border-t border-white/5 overflow-hidden">
+        <div class="absolute inset-0 bg-radial-glow" data-parallax="0.2"></div>
+        <div class="relative max-w-4xl mx-auto px-6 py-24 text-center">
+            <h2 class="font-display font-extrabold text-3xl md:text-5xl leading-tight mb-6 reveal">
+                Your radar is already on.<br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-sphere-pink to-sphere-violet">Come find
+                    your people.</span>
+            </h2>
+            <p class="text-sphere-lavender mb-10 max-w-lg mx-auto reveal" style="--reveal-delay:0.1s">SphereMessage is
+                in beta, launching first across Lagos. Join the list and we'll ping you the moment it's live.</p>
+            <div class="flex flex-wrap justify-center gap-3 mb-6 reveal" style="--reveal-delay:0.2s">
+                <a href="#"
+                    class="flex items-center gap-3 bg-white text-sphere-black rounded-2xl px-5 py-3 hover:bg-sphere-lavender transition">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17.03 2.94 12.6 4.66 9.62c.86-1.48 2.4-2.41 4.07-2.44 1.29-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.27-2.15 3.79.03 3.02 2.65 4.02 2.68 4.03-.02.07-.42 1.44-1.39 2.86-.83 1.24-1.71 2.45-3.05 2.47M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z" />
+                    </svg>
+                    <span class="text-left leading-tight">
+                        <span class="block text-[10px] font-medium text-sphere-black/60 tag">Download on the</span>
+                        <span class="block text-sm font-bold">App Store</span>
+                    </span>
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 bg-white text-sphere-black rounded-2xl px-5 py-3 hover:bg-sphere-lavender transition">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M3.6 2.6a1 1 0 0 0-.6.9v17a1 1 0 0 0 .6.9l9.7-9.4-9.7-9.4Zm11.1 9.4-2.6-2.5L3.9 2.7l10.8 9.3Zm0 0-2.6 2.5L3.9 21.3l10.8-9.3Zm1-1.4 2.9-1.6c.7-.4.7-1.4 0-1.8l-2.9-1.6-2.7 2.5 2.7 2.5Z" />
+                    </svg>
+                    <span class="text-left leading-tight">
+                        <span class="block text-[10px] font-medium text-sphere-black/60 tag">Get it on</span>
+                        <span class="block text-sm font-bold">Google Play</span>
+                    </span>
+                </a>
+            </div>
+            <p class="tag text-xs text-sphere-lavender/60">Replace these links with your live App Store / Play Store
+                URLs once published.</p>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-full bg-gradient-to-br from-sphere-pink to-sphere-violet">
+                    <img src="./images/logo.jpeg" class="object-cover rounded-full" alt="">
+                </div>
+                <span class="font-display font-semibold text-sm">SphereMessage</span>
+            </div>
+            <p class="tag text-xs text-sphere-lavender/60">© 2026 SphereMessage. Made in Lagos.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll-reveal: fade/scale elements in as they enter the viewport
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!reduceMotion && 'IntersectionObserver' in window) {
+            var revealEls = document.querySelectorAll('.reveal, .reveal-scale');
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+            revealEls.forEach(function (el) { observer.observe(el); });
+        } else {
+            // No IntersectionObserver support, or reduced motion: just show everything
+            document.querySelectorAll('.reveal, .reveal-scale').forEach(function (el) {
+                el.classList.add('is-visible');
+            });
+        }
+
+        // Parallax: layers drift at different speeds as the page scrolls
+        if (!reduceMotion) {
+            var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+            var ticking = false;
+
+            function updateParallax() {
+                var viewportCenter = window.scrollY + window.innerHeight / 2;
+                parallaxEls.forEach(function (el) {
+                    var speed = parseFloat(el.getAttribute('data-parallax')) || 0.2;
+                    var rect = el.getBoundingClientRect();
+                    var elCenter = window.scrollY + rect.top + rect.height / 2;
+                    var offset = (viewportCenter - elCenter) * speed * 0.15;
+                    el.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
+                });
+                ticking = false;
+            }
+
+            function requestTick() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', requestTick, { passive: true });
+            window.addEventListener('resize', requestTick);
+            updateParallax();
+        }
+    </script>
+
+    <script>
+        // Typewriter effect for the hero headline — types "Feel who's" once,
+        // then loops the gradient line through several endings forever.
+        (function () {
+            var reduceMotionTw = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var line1El = document.getElementById('tw-line1');
+            var line2El = document.getElementById('tw-line2');
+            var cursorEl = document.getElementById('tw-cursor');
+            var gradientEl = line2El ? line2El.parentElement : null;
+            if (!line1El || !line2El || !cursorEl || !gradientEl) return;
+
+            var text1 = "Feel who's";
+            var phrases = [
+                "around you.",
+                "near Yaba.",
+                "on your wavelength.",
+                "worth the hangout.",
+                "in real life."
+            ];
+
+            if (reduceMotionTw) {
+                line1El.textContent = text1;
+                line2El.textContent = phrases[0];
+                cursorEl.style.display = 'none';
+                return;
+            }
+
+            var stopped = false;
+
+            var stopped = false;
+            var timerId = null;
+
+            function schedule(fn, delay) {
+                timerId = setTimeout(fn, delay);
+            }
+
+            function typeInto(el, text, i, baseDelay, onDone) {
+                if (stopped) return;
+                if (i >= text.length) { onDone && onDone(); return; }
+                el.textContent += text.charAt(i);
+                var jitter = Math.random() * 30 - 10;
+                schedule(function () { typeInto(el, text, i + 1, baseDelay, onDone); }, baseDelay + jitter);
+            }
+
+            function deleteFrom(el, len, baseDelay, onDone) {
+                if (stopped) return;
+                if (len <= 0) { onDone && onDone(); return; }
+                el.textContent = el.textContent.slice(0, len - 1);
+                var jitter = Math.random() * 20 - 8;
+                schedule(function () { deleteFrom(el, len - 1, baseDelay, onDone); }, baseDelay + jitter);
+            }
+
+            function loopPhrases() {
+                if (stopped) return;
+                var phrase = phrases[loopPhrases.i % phrases.length];
+                loopPhrases.i++;
+                typeInto(line2El, phrase, 0, 70, function () {
+                    schedule(function () {
+                        deleteFrom(line2El, phrase.length, 35, function () {
+                            schedule(loopPhrases, 350);
+                        });
+                    }, 1700); // how long the finished phrase sits on screen
+                });
+            }
+            loopPhrases.i = 0;
+
+            function startTypewriter() {
+                typeInto(line1El, text1, 0, 65, function () {
+                    schedule(function () {
+                        gradientEl.appendChild(cursorEl); // move cursor to the gradient line and leave it there
+                        loopPhrases();
+                    }, 260);
+                });
+            }
+
+            // Start once the hero is actually visible (also works fine if it's already in view on load)
+            if ('IntersectionObserver' in window) {
+                var heroObs = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            startTypewriter();
+                            heroObs.disconnect();
+                        }
+                    });
+                }, { threshold: 0.2 });
+                heroObs.observe(line1El.closest('h1'));
+            } else {
+                startTypewriter();
+            }
+
+            // Pause the loop when the tab isn't visible so no timers pile up in the background,
+            // then wipe any half-typed text and start a clean phrase when the tab comes back.
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    stopped = true;
+                    if (timerId) { clearTimeout(timerId); timerId = null; }
+                } else if (stopped) {
+                    stopped = false;
+                    if (line1El.textContent === text1) {
+                        line2El.textContent = '';
+                        schedule(loopPhrases, 300);
+                    }
+                }
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
