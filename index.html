@@ -907,12 +907,11 @@ const WAITLIST_TABLE_ID = "website_waitlist";
                         databaseId: DATABASE_ID,
                         tableId: WAITLIST_TABLE_ID,
                         rowId: Appwrite.ID.unique(),
-                        data: {
-                            email: email,
-                            phone: phone,
-                            source: "website",
-                            status: "waiting"
-                        }
+                       data: {
+    email: email,
+    phone: phone,
+    source: "website"
+}
                     });
 
                     emailInput.value = "";
