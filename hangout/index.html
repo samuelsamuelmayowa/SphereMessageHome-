@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Join a Hangout | SphereMessage</title>
+
+  <meta
+    name="description"
+    content="You have been invited to join a Hangout on SphereMessage."
+  />
+
+  <meta
+    property="og:title"
+    content="Join this Hangout on SphereMessage"
+  />
+
+  <meta
+    property="og:description"
+    content="Open SphereMessage to see the Hangout and the people attending."
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at top, #343087, #061020 60%);
+      color: #ffffff;
+      font-family: Poppins, Arial, sans-serif;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 480px;
+      padding: 36px 28px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 32px;
+      background: rgba(11, 22, 48, 0.88);
+      text-align: center;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+    }
+
+    .logo {
+      margin-bottom: 14px;
+      color: #c0c1ff;
+      font-size: 25px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0 0 28px;
+      color: #b8c2d9;
+      line-height: 1.7;
+    }
+
+    button,
+    a.button {
+      width: 100%;
+      min-height: 56px;
+      margin-top: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 999px;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: linear-gradient(90deg, #8083ff, #5a45ef);
+      color: #071020;
+    }
+
+    .secondary {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.07);
+      color: #ffffff;
+    }
+
+    .small {
+      margin-top: 24px;
+      color: #8490ab;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="logo">SphereMessage</div>
+
+    <h1>You’ve been invited to a Hangout</h1>
+
+    <p>
+      Open SphereMessage to view the Hangout,
+      meet the host and see who is attending.
+    </p>
+
+    <button
+      id="open-app"
+      class="primary"
+      type="button"
+    >
+      Open in SphereMessage
+    </button>
+
+    <a
+      class="button secondary"
+      href="/"
+    >
+      Visit SphereMessage
+    </a>
+
+    <div class="small">
+      SphereMessage is available on Android for now.
+      The iOS version is coming soon.
+    </div>
+  </main>
+
+  <script>
+    const pathParts =
+      window.location.pathname
+        .split("/")
+        .filter(Boolean);
+
+    const hangoutId =
+      pathParts[0] === "hangout"
+        ? pathParts[1]
+        : null;
+
+    const openButton =
+      document.getElementById("open-app");
+
+    openButton.addEventListener("click", () => {
+      if (!hangoutId) {
+        window.location.href = "/";
+        return;
+      }
+
+      const appUrl =
+        "spheremessage://hangout/" +
+        encodeURIComponent(hangoutId);
+
+      window.location.href = appUrl;
+    });
+  </script>
+</body>
+</html>

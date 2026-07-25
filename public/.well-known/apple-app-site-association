@@ -1,0 +1,23 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "YOUR_APPLE_TEAM_ID.com.sphereios.app",
+        "paths": [
+          "/hangout/*"
+        ]
+      }
+    ]
+  },
+  "activitycontinuation": {
+    "apps": [
+      "YOUR_APPLE_TEAM_ID.com.sphereios.app"
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "YOUR_APPLE_TEAM_ID.com.sphereios.app"
+    ]
+  }
+}
