@@ -40,6 +40,7 @@
             scroll-behavior: smooth;
             scroll-padding-top: 80px;
         }
+
         body {
             background-color: #0A0714;
         }
@@ -256,7 +257,7 @@
                 <a href="#radar" class="hover:text-sphere-white transition">Sphere Radar</a>
                 <a href="#profile" class="hover:text-sphere-white transition">Profiles</a>
                 <a href="#feeds" class="hover:text-sphere-white transition">Feeds</a>
-                  <a href="privacy.html" class="hover:text-sphere-white transition">Privacy</a>
+                <a href="privacy.html" class="hover:text-sphere-white transition">Privacy</a>
 
             </nav>
             <a href="#download"
@@ -402,7 +403,7 @@
                             class="tag text-xs bg-sphere-pink/10 text-sphere-pink border border-sphere-pink/20 rounded-full px-3 py-1">Gifts</span>
 
 
-                              <span
+                        <span
                             class="tag text-xs bg-sphere-pink/10 text-sphere-pink border border-sphere-pink/20 rounded-full px-3 py-1">Money</span>
                         <span
                             class="tag text-xs bg-sphere-pink/10 text-sphere-pink border border-sphere-pink/20 rounded-full px-3 py-1">Words
@@ -587,50 +588,34 @@
             <p class="text-sphere-lavender mb-10 max-w-lg mx-auto reveal" style="--reveal-delay:0.1s">SphereMessage is
                 in beta, launching first across Lagos. Join the list and we'll ping you the moment it's live.</p>
             <!-- EMAIL WAITLIST -->
-            <form id="waitlist-form"
-                class="max-w-2xl mx-auto mb-10 reveal"
-                style="--reveal-delay:0.18s">
+            <form id="waitlist-form" class="max-w-2xl mx-auto mb-10 reveal" style="--reveal-delay:0.18s">
                 <div class="grid gap-3 sm:grid-cols-2">
                     <div>
                         <label for="waitlist-email" class="sr-only">Email address</label>
-                        <input
-                            id="waitlist-email"
-                            name="email"
-                            type="email"
-                            autocomplete="email"
-                            required
+                        <input id="waitlist-email" name="email" type="email" autocomplete="email" required
                             placeholder="Email address"
                             class="w-full min-w-0 rounded-2xl border border-white/10 bg-sphere-panel2 px-5 py-4 text-sphere-white placeholder:text-sphere-lavender/60 outline-none transition focus:border-sphere-pink focus:ring-2 focus:ring-sphere-pink/20">
                     </div>
 
                     <div>
                         <label for="waitlist-phone" class="sr-only">Phone number</label>
-                        <input
-                            id="waitlist-phone"
-                            name="phone"
-                            type="tel"
-                            autocomplete="tel"
-                            inputmode="tel"
-                            required
+                        <input id="waitlist-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required
                             placeholder="Phone number, e.g. 08012345678"
                             class="w-full min-w-0 rounded-2xl border border-white/10 bg-sphere-panel2 px-5 py-4 text-sphere-white placeholder:text-sphere-lavender/60 outline-none transition focus:border-sphere-pink focus:ring-2 focus:ring-sphere-pink/20">
                     </div>
                 </div>
 
-                <button
-                    id="waitlist-button"
-                    type="submit"
+                <button id="waitlist-button" type="submit"
                     class="mt-3 w-full rounded-2xl bg-gradient-to-r from-sphere-pink to-sphere-violet px-7 py-4 font-bold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60">
                     Join the list
                 </button>
 
-                <p id="waitlist-message"
-                    class="mt-4 min-h-5 text-sm text-sphere-lavender"
-                    role="status"
+                <p id="waitlist-message" class="mt-4 min-h-5 text-sm text-sphere-lavender" role="status"
                     aria-live="polite"></p>
 
                 <p class="mt-2 text-xs text-sphere-lavender/60">
-                    Android is available first. We may contact you by email or phone about testing access and the iOS launch.
+                    Android is available first. We may contact you by email or phone about testing access and the iOS
+                    launch.
                 </p>
             </form>
 
@@ -658,7 +643,7 @@
                     </span>
                 </a>
             </div>
-         
+
         </div>
     </section>
 
@@ -673,7 +658,10 @@
             <p class="tag text-xs text-sphere-lavender/60">© 2026 SphereMessage. Made in Lagos.</p>
         </div>
     </footer>
-
+    <script type="module">
+        import { inject } from "https://esm.sh/@vercel/analytics";
+        inject();
+    </script>
     <script>
         // Scroll-reveal: fade/scale elements in as they enter the viewport
         var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -839,10 +827,10 @@
         // SPHEREMESSAGE EMAIL AND PHONE WAITLIST
         // Replace the two placeholder values below with your Appwrite details.
         (function () {
-          const APPWRITE_ENDPOINT = "https://nyc.cloud.appwrite.io/v1";
-const APPWRITE_PROJECT_ID = "6a28395f0000377c2a9d";
-const DATABASE_ID = "6a3cbadf001ccbc9c01e";
-const WAITLIST_TABLE_ID = "website_waitlist";
+            const APPWRITE_ENDPOINT = "https://nyc.cloud.appwrite.io/v1";
+            const APPWRITE_PROJECT_ID = "6a28395f0000377c2a9d";
+            const DATABASE_ID = "6a3cbadf001ccbc9c01e";
+            const WAITLIST_TABLE_ID = "website_waitlist";
 
             const form = document.getElementById("waitlist-form");
             const emailInput = document.getElementById("waitlist-email");
@@ -908,11 +896,11 @@ const WAITLIST_TABLE_ID = "website_waitlist";
                         databaseId: DATABASE_ID,
                         tableId: WAITLIST_TABLE_ID,
                         rowId: Appwrite.ID.unique(),
-                       data: {
-    email: email,
-    phone: phone,
-    source: "website"
-}
+                        data: {
+                            email: email,
+                            phone: phone,
+                            source: "website"
+                        }
                     });
 
                     emailInput.value = "";
