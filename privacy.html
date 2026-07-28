@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SphereMessage Privacy Policy — learn how SphereMessage handles account, profile, location, Hangout, Moment and messaging information.">
+    <title>Privacy Policy — SphereMessage</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sphere-black': '#0A0714',
+                        'sphere-panel': '#140F26',
+                        'sphere-panel2': '#1C1538',
+                        'sphere-pink': '#FF3D71',
+                        'sphere-violet': '#8B5CF6',
+                        'sphere-lavender': '#A79BC7',
+                        'sphere-white': '#F5F3FF',
+                    },
+                    fontFamily: {
+                        display: ['Unbounded', 'sans-serif'],
+                        body: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 105px;
+        }
+
+        body {
+            background: #0A0714;
+        }
+
+        .bg-grid {
+            background-image:
+                linear-gradient(rgba(167, 155, 199, 0.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(167, 155, 199, 0.055) 1px, transparent 1px);
+            background-size: 44px 44px;
+        }
+
+        .bg-radial-glow {
+            background:
+                radial-gradient(65% 60% at 50% 5%, rgba(139, 92, 246, 0.28) 0%, rgba(10, 7, 20, 0) 72%);
+        }
+
+        .tag {
+            font-family: "JetBrains Mono", monospace;
+            letter-spacing: 0.02em;
+        }
+
+        .policy-card {
+            background: linear-gradient(180deg, rgba(28, 21, 56, 0.92), rgba(20, 15, 38, 0.92));
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .policy-copy h2 {
+            font-family: "Unbounded", sans-serif;
+            font-size: 1.25rem;
+            line-height: 1.45;
+            font-weight: 700;
+            color: #F5F3FF;
+            margin-bottom: 1rem;
+        }
+
+        .policy-copy h3 {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: 1rem;
+            line-height: 1.5;
+            font-weight: 800;
+            color: #F5F3FF;
+            margin-top: 1.4rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .policy-copy p {
+            color: #A79BC7;
+            line-height: 1.85;
+            margin-top: 0.8rem;
+        }
+
+        .policy-copy ul {
+            list-style: none;
+            margin-top: 0.9rem;
+            display: grid;
+            gap: 0.65rem;
+        }
+
+        .policy-copy li {
+            position: relative;
+            padding-left: 1.4rem;
+            color: #A79BC7;
+            line-height: 1.75;
+        }
+
+        .policy-copy li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 0.42rem;
+            height: 0.42rem;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #FF3D71, #8B5CF6);
+            box-shadow: 0 0 14px rgba(255, 61, 113, 0.45);
+        }
+
+        .policy-copy a {
+            color: #FF3D71;
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 61, 113, 0.45);
+            text-underline-offset: 3px;
+        }
+
+        .policy-copy a:hover {
+            color: #F5F3FF;
+        }
+
+        .nav-link.active {
+            color: #F5F3FF;
+            border-color: rgba(255, 61, 113, 0.7);
+            background: rgba(255, 61, 113, 0.07);
+        }
+
+        ::selection {
+            background: #FF3D71;
+            color: #0A0714;
+        }
+
+        @media print {
+            header,
+            .page-decoration,
+            .sidebar,
+            .contact-cta,
+            footer {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            main {
+                padding: 0 !important;
+            }
+
+            .policy-card {
+                border: none !important;
+                background: white !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+
+            .policy-copy h2,
+            .policy-copy h3 {
+                color: black !important;
+            }
+
+            .policy-copy p,
+            .policy-copy li {
+                color: #222 !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-body text-sphere-white antialiased">
+    <div class="page-decoration pointer-events-none fixed inset-0 -z-10">
+        <div class="absolute inset-0 bg-grid"></div>
+        <div class="absolute inset-0 bg-radial-glow"></div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <header class="sticky top-0 z-50 border-b border-white/5 bg-sphere-black/80 backdrop-blur-xl">
+        <div class="mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 py-4">
+            <a href="./index.html" class="flex items-center gap-3" aria-label="Go to SphereMessage home page">
+                <div class="h-11 w-11 overflow-hidden rounded-full bg-gradient-to-br from-sphere-pink to-sphere-violet">
+                    <img
+                        src="./images/logo.jpeg"
+                        class="h-full w-full rounded-full object-cover"
+                        alt="SphereMessage logo">
+                </div>
+                <span class="font-display text-base font-bold tracking-tight sm:text-lg">
+                    Sphere<span class="text-sphere-pink">Message</span>
+                </span>
+            </a>
+
+            <div class="flex items-center gap-3">
+                <span class="tag hidden text-xs text-sphere-lavender sm:inline">Legal &amp; Privacy</span>
+                <a
+                    href="./index.html"
+                    class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold transition hover:border-sphere-pink/40 hover:bg-sphere-pink/10">
+                    Back home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="relative overflow-hidden border-b border-white/5">
+            <div class="mx-auto max-w-7xl px-6 pb-16 pt-16 md:pb-20 md:pt-24">
+                <div class="max-w-4xl">
+                    <div class="tag mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-sphere-lavender">
+                        <span class="h-1.5 w-1.5 rounded-full bg-sphere-pink shadow-[0_0_12px_rgba(255,61,113,0.8)]"></span>
+                        Your privacy on SphereMessage
+                    </div>
+
+                    <h1 class="font-display text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl">
+                        Privacy that keeps your
+                        <span class="block bg-gradient-to-r from-sphere-pink to-sphere-violet bg-clip-text text-transparent">
+                            sphere protected.
+                        </span>
+                    </h1>
+
+                    <p class="mt-6 max-w-3xl text-base leading-8 text-sphere-lavender sm:text-lg">
+                        This policy explains how SphereMessage processes information when you use profiles,
+                        Sphere Radar, Hangouts, Moments, Vibing Now and private messaging.
+                    </p>
+
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <span class="tag rounded-full border border-white/10 bg-sphere-panel2 px-4 py-2 text-xs text-sphere-lavender">
+                            Effective: 24 July 2026
+                        </span>
+                        <span class="tag rounded-full border border-white/10 bg-sphere-panel2 px-4 py-2 text-xs text-sphere-lavender">
+                            Last updated: 24 July 2026
+                        </span>
+                        <span class="tag rounded-full border border-sphere-pink/25 bg-sphere-pink/10 px-4 py-2 text-xs text-sphere-pink">
+                            Adults 18+ only
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- POLICY CONTENT -->
+        <section class="mx-auto grid max-w-7xl gap-8 px-6 py-12 lg:grid-cols-[280px_minmax(0,1fr)] lg:py-16">
+            <!-- TABLE OF CONTENTS -->
+            <aside class="sidebar">
+                <div class="sticky top-28 rounded-3xl border border-white/5 bg-sphere-panel/75 p-5 backdrop-blur-lg">
+                    <p class="tag mb-4 text-xs text-sphere-pink">On this page</p>
+                    <nav class="grid gap-1.5 text-sm text-sphere-lavender" aria-label="Privacy policy sections">
+                        <a class="nav-link rounded-xl border border-transparent px-3 py-2 transition hover:bg-white/5 hover:text-white" href="#overview">Overview</a>
+                        <a class="nav-link rounded-xl border border-transparent px-3 py-2 transition hover:bg-white/5 hover:text-white" href="#age">Age requirement</a>
+                        <a class="nav-link rounded-xl border border-transparent px-3 py-2 transition hover:bg-white/5 hover:text-white" href="#information">Information we process</a>
+                        <a class="nav-link rounded-xl border border-transparent px-3 py-2 transition hover:bg-white/5 hover:text-white" href="#use">How information is used</a>
+                        <a class="nav-link rounded-xl border border-transparent px-3 py-2 transition hover:bg-white/5 hover:text-white" href="#visibility">What other users see</a>
+                        <a class="nav-link rounded-xl border border-transparent px-3 py-2 transition hover:bg-white/5 hover:text-white" href="#sharing">Information sharing</a>
+                        <a class="nav-link rounded-xl border border-transparent px-3 py-2 transition hover:bg-white/5 hover:text-white" href="#retention">Retention and deletion</a>
+                        <a class="nav-link rounded-xl border border-transparent px-3 py-2 transition hover:bg-white/5 hover:text-white" href="#rights">Your rights</a>
+                        <a class="nav-link rounded-xl border border-transparent px-3 py-2 transition hover:bg-white/5 hover:text-white" href="#security">Security</a>
+                        <a class="nav-link rounded-xl border border-transparent px-3 py-2 transition hover:bg-white/5 hover:text-white" href="#contact">Contact us</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <article class="policy-copy space-y-6">
+                <!-- IMPORTANT NOTICE -->
+                <section class="rounded-3xl border border-sphere-pink/20 bg-gradient-to-br from-sphere-pink/10 to-sphere-violet/10 p-6 sm:p-8">
+                    <p class="tag !mt-0 text-xs text-sphere-pink">Important clarification</p>
+                    <h2 class="!mb-2 !mt-3">Email is our only required contact detail.</h2>
+                    <p class="!mt-0">
+                        SphereMessage currently uses an email address for verification, recovery, security and support.
+                        The app also processes the profile details, messages, media, location choices and activity you
+                        provide while using its features. This information is described below.
+                    </p>
+                </section>
+
+                <section id="overview" class="policy-card scroll-mt-28 rounded-3xl p-6 shadow-2xl shadow-black/10 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">01 — Overview</p>
+                    <h2>About this Privacy Policy</h2>
+                    <p>
+                        SphereMessage is a social-discovery platform designed to help adults discover and communicate
+                        with people through shared interests, intentions, current vibes and nearby activities.
+                    </p>
+                    <p>
+                        This Privacy Policy explains what information SphereMessage processes, why it is used, how it
+                        may be shared, how long it may be retained and the choices available to you.
+                    </p>
+                    <p>
+                        By creating an account or continuing to use SphereMessage, you acknowledge the practices
+                        described in this Privacy Policy.
+                    </p>
+                </section>
+
+                <section id="age" class="policy-card scroll-mt-28 rounded-3xl p-6 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">02 — Age requirement</p>
+                    <h2>SphereMessage is for adults aged 18 and above</h2>
+                    <p>
+                        You must be at least 18 years old to create an account or use SphereMessage. People under 18
+                        are not permitted to use the service.
+                    </p>
+                    <p>
+                        If we reasonably believe that an account belongs to someone under 18, we may restrict,
+                        suspend or delete that account and remove its associated information where appropriate.
+                    </p>
+                    <p>
+                        Providing false age information may result in account suspension or permanent removal.
+                    </p>
+                </section>
+
+                <section id="information" class="policy-card scroll-mt-28 rounded-3xl p-6 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">03 — Information we process</p>
+                    <h2>Information connected to your use of SphereMessage</h2>
+
+                    <h3>Email address</h3>
+                    <p>
+                        Email is the only personal contact detail currently required by SphereMessage. It may be used
+                        to verify your account, send security codes, support account recovery, respond to support
+                        requests and communicate important service or safety information.
+                    </p>
+                    <p>Your email address is not displayed publicly to other users.</p>
+
+                    <h3>Profile information</h3>
+                    <p>You may choose to provide information such as:</p>
+                    <ul>
+                        <li>Username, display name, biography and profile photographs.</li>
+                        <li>Age, gender and matching preferences.</li>
+                        <li>Hobbies, interests, love languages and vibe tags.</li>
+                        <li>Friendship, dating, networking or Hangout intentions.</li>
+                        <li>Social energy, weekend preferences and other matching details.</li>
+                    </ul>
+
+                    <h3>Sphere Radar and location</h3>
+                    <p>
+                        When you grant location permission or enable nearby visibility, SphereMessage may process
+                        location information to recommend nearby people, Hangouts or Moments, calculate approximate
+                        distance and operate Sphere Radar.
+                    </p>
+                    <p>
+                        You may disable location permission through your device settings. Some Radar and nearby
+                        discovery features may not work properly after location access is disabled.
+                    </p>
+                    <p>
+                        SphereMessage is designed not to display your exact coordinates or precise home address to
+                        other users.
+                    </p>
+
+                    <h3>Hangout information</h3>
+                    <p>When you create, join, save or interact with a Hangout, we may process:</p>
+                    <ul>
+                        <li>Hangout name, description, date, time, category and vibe.</li>
+                        <li>General location or meeting venue.</li>
+                        <li>Cover image, organizer details and participant limit.</li>
+                        <li>Attendance, interest, join requests, invitations and participant status.</li>
+                        <li>Views, saves, reports and other Hangout activity.</li>
+                    </ul>
+
+                    <h3>Moment information</h3>
+                    <p>When you create or join a Moment, we may process:</p>
+                    <ul>
+                        <li>Moment title, type, creator, members and participation status.</li>
+                        <li>Join codes, invitation links and entry settings.</li>
+                        <li>Messages, photographs, media and other content shared in the Moment.</li>
+                        <li>Creation, participation, expiry and moderation timestamps.</li>
+                        <li>Reports and safety-related records.</li>
+                    </ul>
+
+                    <h3>Chats, posts and user content</h3>
+                    <p>SphereMessage processes content that you choose to create or send, including:</p>
+                    <ul>
+                        <li>Private messages and Moment messages.</li>
+                        <li>Images, media and profile photographs.</li>
+                        <li>Posts, Confessions, comments, reactions and feedback.</li>
+                        <li>Reports, blocks and safety complaints.</li>
+                    </ul>
+
+                    <h3>Activity and matching signals</h3>
+                    <p>
+                        To provide recommendations, SphereMessage may process activity including profiles viewed,
+                        interests sent or received, Hangouts saved or joined, Moments created or joined, active vibes,
+                        recent activity, matching preferences, blocks, reports and other interaction signals.
+                    </p>
+
+                    <h3>Device and technical information</h3>
+                    <p>
+                        SphereMessage and its service providers may process technical information needed to run,
+                        protect and improve the service, such as device type, operating system, app version, internet
+                        protocol address, activity timestamps, installation identifiers, push-notification tokens,
+                        crash reports, logs and diagnostic information.
+                    </p>
+                </section>
+
+                <section id="use" class="policy-card scroll-mt-28 rounded-3xl p-6 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">04 — How information is used</p>
+                    <h2>Why SphereMessage processes information</h2>
+                    <p>We may use information to:</p>
+                    <ul>
+                        <li>Create, verify, protect and maintain user accounts.</li>
+                        <li>Operate profiles, Sphere Radar, Vibing Now, Hangouts, Moments and chats.</li>
+                        <li>Recommend people and activities based on interests, intentions, location choices and activity.</li>
+                        <li>Deliver messages, notifications, security codes and support responses.</li>
+                        <li>Prevent fake accounts, spam, scams, fraud, harassment and abuse.</li>
+                        <li>Investigate reports and enforce community and safety rules.</li>
+                        <li>Diagnose errors, improve features and maintain service reliability.</li>
+                        <li>Comply with applicable law and valid legal requests.</li>
+                    </ul>
+                    <p>
+                        SphereMessage does not sell users' personal information and does not use private messages for
+                        third-party advertising.
+                    </p>
+                </section>
+
+                <section id="visibility" class="policy-card scroll-mt-28 rounded-3xl p-6 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">05 — What other users can see</p>
+                    <h2>Information you choose to share</h2>
+                    <p>Depending on your settings and the feature you use, other users may see:</p>
+                    <ul>
+                        <li>Your username, profile picture, biography and selected profile information.</li>
+                        <li>Your age, interests, vibe, intentions and general location.</li>
+                        <li>Your public posts, Confessions, Hangouts and public participation status.</li>
+                        <li>Your membership in a Moment where membership is visible.</li>
+                        <li>Messages and media you deliberately send or share with them.</li>
+                    </ul>
+                    <p>
+                        Do not share passwords, financial details, government identification numbers, exact home
+                        addresses or other highly sensitive information through profiles, Hangouts, Moments or chats.
+                    </p>
+                    <p>
+                        Content received by another user may be copied, saved or screenshotted outside SphereMessage.
+                    </p>
+                </section>
+
+                <section id="sharing" class="policy-card scroll-mt-28 rounded-3xl p-6 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">06 — Information sharing</p>
+                    <h2>When information may be shared</h2>
+
+                    <h3>With other SphereMessage users</h3>
+                    <p>
+                        Information is shared as needed to operate profiles, matching, Hangouts, Moments and messaging,
+                        based on the content you provide and the privacy choices you make.
+                    </p>
+
+                    <h3>With service providers</h3>
+                    <p>
+                        SphereMessage may rely on providers that support cloud hosting, databases, media storage,
+                        email delivery, notifications, error monitoring, security and communication features.
+                        These providers may process information only as needed to provide services to SphereMessage.
+                    </p>
+
+                    <h3>For safety and legal reasons</h3>
+                    <p>Information may be preserved or disclosed where reasonably necessary to:</p>
+                    <ul>
+                        <li>Investigate fraud, threats, harassment, exploitation or abuse.</li>
+                        <li>Protect a user or another person from harm.</li>
+                        <li>Enforce SphereMessage's rules and agreements.</li>
+                        <li>Respond to valid legal or regulatory requests.</li>
+                        <li>Establish, exercise or defend legal claims.</li>
+                    </ul>
+
+                    <h3>Business changes</h3>
+                    <p>
+                        If SphereMessage is involved in a merger, acquisition, restructuring or transfer of assets,
+                        information may be transferred as part of that transaction, subject to appropriate privacy
+                        safeguards.
+                    </p>
+                </section>
+
+                <section id="moderation" class="policy-card scroll-mt-28 rounded-3xl p-6 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">07 — Safety and moderation</p>
+                    <h2>Keeping the Sphere safer</h2>
+                    <p>
+                        SphereMessage may review content reported by a user or identified as potentially violating
+                        community or safety rules.
+                    </p>
+                    <p>
+                        Access to reported content should be limited to authorised people who need it for moderation,
+                        technical support, legal compliance or abuse investigation.
+                    </p>
+                    <p>
+                        Users may block or report accounts involved in harassment, impersonation, threats, scams,
+                        unsolicited sexual content or other prohibited behaviour.
+                    </p>
+                </section>
+
+                <section id="retention" class="policy-card scroll-mt-28 rounded-3xl p-6 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">08 — Retention and deletion</p>
+                    <h2>How long information may be kept</h2>
+                    <p>
+                        SphereMessage retains information only for as long as reasonably necessary to operate the
+                        service, provide requested features, maintain safety, investigate reports, resolve disputes
+                        and comply with legal obligations.
+                    </p>
+                    <p>
+                        Moment messages and media may be retained for up to <strong class="text-sphere-white">30 days
+                        after a Moment ends</strong> for safety, abuse investigation, dispute handling and service
+                        reliability, unless a longer period is legally required.
+                    </p>
+                    <p>
+                        When an account is deleted, associated personal information will be deleted or anonymised
+                        within a reasonable period, except where limited retention is needed for security, fraud
+                        prevention, unresolved reports, legal compliance or the protection of other users.
+                    </p>
+                    <p>
+                        Copies may remain temporarily in secure backups before they are automatically overwritten or
+                        removed.
+                    </p>
+
+                    <h3>Deleting your account or data</h3>
+                    <p>
+                        You may request deletion through SphereMessage's account or privacy settings when available,
+                        or by emailing
+                        <a href="mailto:spheremessage@gmail.com">spheremessage@gmail.com</a>.
+                    </p>
+                    <p>
+                        We may ask you to verify the email connected to your account before completing the request.
+                    </p>
+                    <p>Deleting an account may not remove:</p>
+                    <ul>
+                        <li>Messages already delivered to another user.</li>
+                        <li>Content another user independently saved or screenshotted.</li>
+                        <li>Information that must be retained for legal, safety or fraud-prevention reasons.</li>
+                        <li>Anonymous or aggregated information that can no longer identify you.</li>
+                    </ul>
+                </section>
+
+                <section id="rights" class="policy-card scroll-mt-28 rounded-3xl p-6 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">09 — Your privacy rights</p>
+                    <h2>Your choices and requests</h2>
+                    <p>Subject to applicable law, you may ask to:</p>
+                    <ul>
+                        <li>Access personal information held about you.</li>
+                        <li>Correct inaccurate or incomplete information.</li>
+                        <li>Delete your personal information.</li>
+                        <li>Restrict or object to certain processing.</li>
+                        <li>Withdraw consent previously given.</li>
+                        <li>Receive certain information in a portable format.</li>
+                        <li>Complain about how your information has been handled.</li>
+                    </ul>
+                    <p>
+                        Send privacy requests to
+                        <a href="mailto:spheremessage@gmail.com">spheremessage@gmail.com</a>.
+                        We may need to verify your identity before completing a request.
+                    </p>
+                </section>
+
+                <section id="notifications" class="policy-card scroll-mt-28 rounded-3xl p-6 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">10 — Emails and notifications</p>
+                    <h2>Service communications</h2>
+                    <p>SphereMessage may send:</p>
+                    <ul>
+                        <li>Email verification and security codes.</li>
+                        <li>Account recovery and safety messages.</li>
+                        <li>Important service announcements.</li>
+                        <li>Responses to support and privacy requests.</li>
+                        <li>Push notifications relating to activity inside the app.</li>
+                    </ul>
+                    <p>
+                        You may manage push notifications through your app or device settings. Promotional
+                        communications, if introduced, will provide an appropriate way to unsubscribe.
+                    </p>
+                </section>
+
+                <section id="security" class="policy-card scroll-mt-28 rounded-3xl p-6 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">11 — Security and international processing</p>
+                    <h2>Protecting information</h2>
+                    <p>
+                        SphereMessage uses reasonable administrative, technical and organisational safeguards designed
+                        to protect information from unauthorised access, misuse, alteration, disclosure or loss.
+                    </p>
+                    <p>
+                        No online service can guarantee complete security. You should protect your verification
+                        details and immediately report suspicious activity.
+                    </p>
+
+                    <h3>International processing</h3>
+                    <p>
+                        Some cloud or technical service providers may process information outside Nigeria. Where this
+                        occurs, SphereMessage will take reasonable steps to use appropriate safeguards under
+                        applicable data-protection requirements.
+                    </p>
+                </section>
+
+                <section id="changes" class="policy-card scroll-mt-28 rounded-3xl p-6 sm:p-9">
+                    <p class="tag !mt-0 mb-3 text-xs text-sphere-violet">12 — Changes to this policy</p>
+                    <h2>Policy updates</h2>
+                    <p>
+                        SphereMessage may update this Privacy Policy when features, technology, legal requirements or
+                        data practices change.
+                    </p>
+                    <p>
+                        The updated version will show a revised “Last updated” date. Where appropriate, users may also
+                        be notified inside the app or by email when a change materially affects their privacy.
+                    </p>
+                </section>
+
+                <section id="contact" class="contact-cta scroll-mt-28 overflow-hidden rounded-3xl border border-sphere-violet/25 bg-gradient-to-br from-sphere-panel2 to-sphere-panel p-7 sm:p-10">
+                    <p class="tag !mt-0 text-xs text-sphere-pink">Contact SphereMessage</p>
+                    <h2 class="!mb-3 !mt-4">Questions, deletion requests or privacy concerns?</h2>
+                    <p class="max-w-2xl !mt-0">
+                        Contact SphereMessage using the email below. Do not include passwords, verification codes or
+                        highly sensitive information in your message.
+                    </p>
+
+                    <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+                        <a
+                            href="mailto:spheremessage@gmail.com"
+                            class="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-sphere-pink to-sphere-violet px-6 py-3.5 font-bold text-white no-underline transition hover:brightness-110">
+                            Email spheremessage@gmail.com
+                        </a>
+                        <a
+                            href="./index.html"
+                            class="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-6 py-3.5 font-semibold text-sphere-white no-underline transition hover:bg-white/10">
+                            Return to SphereMessage
+                        </a>
+                    </div>
+                </section>
+            </article>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/5">
+        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-6 py-10 sm:flex-row">
+            <a href="./index.html" class="flex items-center gap-2">
+                <div class="h-7 w-7 overflow-hidden rounded-full bg-gradient-to-br from-sphere-pink to-sphere-violet">
+                    <img
+                        src="./images/logo.jpeg"
+                        class="h-full w-full rounded-full object-cover"
+                        alt="SphereMessage logo">
+                </div>
+                <span class="font-display text-sm font-semibold">SphereMessage</span>
+            </a>
+
+            <p class="tag text-center text-xs text-sphere-lavender/60">
+                © 2026 SphereMessage. Made in Lagos.
+            </p>
+
+            <a
+                href="mailto:spheremessage@gmail.com"
+                class="tag text-xs text-sphere-lavender transition hover:text-sphere-pink">
+                spheremessage@gmail.com
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Highlight the section currently visible in the policy.
+        (function () {
+            if (!("IntersectionObserver" in window)) return;
+
+            const links = Array.from(document.querySelectorAll(".nav-link"));
+            const sections = links
+                .map(function (link) {
+                    const selector = link.getAttribute("href");
+                    return selector ? document.querySelector(selector) : null;
+                })
+                .filter(Boolean);
+
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+
+                    links.forEach(function (link) {
+                        link.classList.toggle(
+                            "active",
+                            link.getAttribute("href") === "#" + entry.target.id
+                        );
+                    });
+                });
+            }, {
+                rootMargin: "-18% 0px -68% 0px",
+                threshold: 0
+            });
+
+            sections.forEach(function (section) {
+                observer.observe(section);
+            });
+        })();
+    </script>
+</body>
+</html>
