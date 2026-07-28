@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://getspheremessage.com/sitemap.xml
