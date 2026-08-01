@@ -1,5 +1,10 @@
 {
-  "version": 2,
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/delete-account",
+      "destination": "/delete-account/index.html"
+    }
+  ]
 }

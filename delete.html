@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Request deletion of your SphereMessage account and associated data.">
+    <meta name="robots" content="index,follow">
+    <title>Delete your SphereMessage account</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sphere-black': '#0A0714',
+                        'sphere-panel': '#140F26',
+                        'sphere-panel2': '#1C1538',
+                        'sphere-pink': '#FF3D71',
+                        'sphere-violet': '#8B5CF6',
+                        'sphere-lavender': '#A79BC7',
+                        'sphere-white': '#F5F3FF'
+                    },
+                    fontFamily: {
+                        display: ['Unbounded', 'sans-serif'],
+                        body: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { background: #0A0714; }
+        .bg-grid {
+            background-image:
+                linear-gradient(rgba(167,155,199,.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(167,155,199,.055) 1px, transparent 1px);
+            background-size: 44px 44px;
+        }
+        .bg-glow {
+            background:
+                radial-gradient(55% 45% at 50% 5%, rgba(139,92,246,.23), transparent 70%),
+                radial-gradient(35% 35% at 90% 45%, rgba(255,61,113,.12), transparent 75%);
+        }
+        ::selection { background: #FF3D71; color: #0A0714; }
+    </style>
+</head>
+
+<body class="font-body text-sphere-white antialiased min-h-screen">
+    <div class="fixed inset-0 bg-grid pointer-events-none"></div>
+    <div class="fixed inset-0 bg-glow pointer-events-none"></div>
+
+    <header class="relative z-20 border-b border-white/5 bg-sphere-black/80 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+           <div class="flex items-center gap-2">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sphere-pink to-sphere-violet">
+                    <img src="./images/logo.jpeg" class="object-cover rounded-full" alt="">
+                </div>
+                <span class="font-display font-bold text-lg tracking-tight">Sphere<span
+                        class="text-sphere-pink">Message</span></span>
+            </div>
+            <a href="index.html" class="rounded-full border border-white/10 px-4 py-2 text-sm text-sphere-lavender transition hover:border-white/20 hover:text-white">Back to home</a>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <section class="max-w-6xl mx-auto px-6 py-14 sm:py-20">
+            <div class="max-w-3xl">
+                <p class="font-mono text-xs uppercase tracking-wider text-sphere-pink mb-4">Account and data deletion</p>
+                <h1 class="font-display font-extrabold text-3xl sm:text-5xl leading-tight">Delete your SphereMessage account</h1>
+                <p class="mt-6 text-base sm:text-lg leading-relaxed text-sphere-lavender">
+                    Use this page to request permanent deletion of your SphereMessage account and the data associated with it. You do not need to reinstall or open the app to submit a request.
+                </p>
+            </div>
+
+            <div class="mt-12 grid lg:grid-cols-[1.2fr_.8fr] gap-8 items-start">
+                <section class="rounded-3xl border border-white/10 bg-sphere-panel/90 p-6 sm:p-8 shadow-2xl shadow-black/30" aria-labelledby="request-heading">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="h-11 w-11 shrink-0 rounded-2xl bg-sphere-pink/15 border border-sphere-pink/20 flex items-center justify-center text-xl">🗑️</div>
+                        <div>
+                            <h2 id="request-heading" class="font-display font-semibold text-xl">Send a deletion request</h2>
+                            <p class="mt-2 text-sm leading-relaxed text-sphere-lavender">Enter enough information for us to locate and verify your account. Never include your password or one-time verification code.</p>
+                        </div>
+                    </div>
+
+                    <form id="delete-form" class="space-y-5">
+                        <div>
+                            <label for="account-email" class="block text-sm font-semibold mb-2">Email connected to the account</label>
+                            <input id="account-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"
+                                class="w-full rounded-2xl border border-white/10 bg-sphere-panel2 px-4 py-3.5 text-white placeholder:text-sphere-lavender/50 outline-none transition focus:border-sphere-pink focus:ring-2 focus:ring-sphere-pink/20">
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="sm-number" class="block text-sm font-semibold mb-2">SM Number <span class="font-normal text-sphere-lavender">(optional)</span></label>
+                                <input id="sm-number" name="smNumber" type="text" autocomplete="off" placeholder="Your SM Number"
+                                    class="w-full rounded-2xl border border-white/10 bg-sphere-panel2 px-4 py-3.5 text-white placeholder:text-sphere-lavender/50 outline-none transition focus:border-sphere-pink focus:ring-2 focus:ring-sphere-pink/20">
+                            </div>
+                            <div>
+                                <label for="phone-number" class="block text-sm font-semibold mb-2">Phone number <span class="font-normal text-sphere-lavender">(optional)</span></label>
+                                <input id="phone-number" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g. +234..."
+                                    class="w-full rounded-2xl border border-white/10 bg-sphere-panel2 px-4 py-3.5 text-white placeholder:text-sphere-lavender/50 outline-none transition focus:border-sphere-pink focus:ring-2 focus:ring-sphere-pink/20">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="username" class="block text-sm font-semibold mb-2">Username or display name <span class="font-normal text-sphere-lavender">(optional)</span></label>
+                            <input id="username" name="username" type="text" autocomplete="username" placeholder="Name shown on your profile"
+                                class="w-full rounded-2xl border border-white/10 bg-sphere-panel2 px-4 py-3.5 text-white placeholder:text-sphere-lavender/50 outline-none transition focus:border-sphere-pink focus:ring-2 focus:ring-sphere-pink/20">
+                        </div>
+
+                        <div>
+                            <label for="details" class="block text-sm font-semibold mb-2">Additional details <span class="font-normal text-sphere-lavender">(optional)</span></label>
+                            <textarea id="details" name="details" rows="4" placeholder="Anything that can help us identify the correct account"
+                                class="w-full resize-y rounded-2xl border border-white/10 bg-sphere-panel2 px-4 py-3.5 text-white placeholder:text-sphere-lavender/50 outline-none transition focus:border-sphere-pink focus:ring-2 focus:ring-sphere-pink/20"></textarea>
+                        </div>
+
+                        <label class="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[.025] p-4 cursor-pointer">
+                            <input id="confirm-delete" type="checkbox" required class="mt-1 h-4 w-4 accent-[#FF3D71]">
+                            <span class="text-sm leading-relaxed text-sphere-lavender">I understand that account deletion is permanent and may remove my profile, messages, photos, matches, posts, Moments, Hangout activity and other account data.</span>
+                        </label>
+
+                        <button id="submit-button" type="submit"
+                            class="w-full rounded-2xl bg-gradient-to-r from-sphere-pink to-sphere-violet px-6 py-4 font-bold text-white transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-sphere-pink focus:ring-offset-2 focus:ring-offset-sphere-panel">
+                            Prepare deletion request
+                        </button>
+
+                        <p id="form-message" class="min-h-6 text-sm text-sphere-lavender" role="status" aria-live="polite"></p>
+                    </form>
+
+                    <div id="email-fallback" class="hidden mt-6 rounded-2xl border border-sphere-violet/25 bg-sphere-violet/10 p-5">
+                        <p class="font-semibold">No email app opened?</p>
+                        <p class="mt-2 text-sm leading-relaxed text-sphere-lavender">Send the prepared request manually to:</p>
+                        <div class="mt-3 flex flex-col sm:flex-row gap-3">
+                            <a href="mailto:spheremessage@gmail.com?subject=SphereMessage%20account%20deletion%20request" class="flex-1 rounded-xl bg-white px-4 py-3 text-center text-sm font-bold text-sphere-black hover:bg-sphere-lavender transition">spheremessage@gmail.com</a>
+                            <button id="copy-request" type="button" class="rounded-xl border border-white/15 px-4 py-3 text-sm font-semibold hover:bg-white/5 transition">Copy request text</button>
+                        </div>
+                        <pre id="prepared-request" class="mt-4 max-h-72 overflow-auto whitespace-pre-wrap rounded-xl bg-sphere-black/70 p-4 text-xs leading-relaxed text-sphere-lavender"></pre>
+                    </div>
+                </section>
+
+                <aside class="space-y-6">
+                    <section class="rounded-3xl border border-white/10 bg-sphere-panel/80 p-6">
+                        <h2 class="font-display font-semibold text-lg">What happens next</h2>
+                        <ol class="mt-5 space-y-5">
+                            <li class="flex gap-4">
+                                <span class="font-mono text-xs text-sphere-pink mt-1">01</span>
+                                <div><p class="font-semibold">Identity check</p><p class="mt-1 text-sm leading-relaxed text-sphere-lavender">We may contact you using information already connected to the account to confirm that the request is genuine.</p></div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="font-mono text-xs text-sphere-pink mt-1">02</span>
+                                <div><p class="font-semibold">Account deletion</p><p class="mt-1 text-sm leading-relaxed text-sphere-lavender">After verification, the account is permanently deleted rather than temporarily disabled or frozen.</p></div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="font-mono text-xs text-sphere-pink mt-1">03</span>
+                                <div><p class="font-semibold">Confirmation</p><p class="mt-1 text-sm leading-relaxed text-sphere-lavender">We send confirmation when the request has been completed. We aim to process verified requests promptly and generally within 30 days.</p></div>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section class="rounded-3xl border border-white/10 bg-sphere-panel/80 p-6">
+                        <h2 class="font-display font-semibold text-lg">Data covered by the request</h2>
+                        <ul class="mt-4 space-y-3 text-sm leading-relaxed text-sphere-lavender">
+                            <li>• Account identifiers, profile information and SM Number</li>
+                            <li>• Photos, bio, preferences, hobbies and love-language information</li>
+                            <li>• Location-related profile data and visibility settings</li>
+                            <li>• Messages, interests, matches, posts, comments and likes</li>
+                            <li>• Moments, Hangout participation and other in-app activity</li>
+                        </ul>
+                    </section>
+
+                    <section class="rounded-3xl border border-white/10 bg-sphere-panel/80 p-6">
+                        <h2 class="font-display font-semibold text-lg">Limited retention</h2>
+                        <p class="mt-3 text-sm leading-relaxed text-sphere-lavender">
+                            Limited information may be retained only where reasonably necessary for security, fraud prevention, legal obligations or dispute resolution. Residual copies may also remain temporarily in routine backups until they are overwritten. Retained information is restricted from normal product use.
+                        </p>
+                    </section>
+                </aside>
+            </div>
+
+            <section class="mt-10 rounded-3xl border border-white/10 bg-sphere-panel/70 p-6 sm:p-8">
+                <h2 class="font-display font-semibold text-xl">You can also request deletion inside the app</h2>
+                <p class="mt-3 text-sphere-lavender leading-relaxed">Open SphereMessage and go to <strong class="text-white">Profile → Settings → Account → Delete account</strong>. The web request above remains available if you have already uninstalled the app or cannot access your account.</p>
+            </section>
+        </section>
+    </main>
+
+    <footer class="relative z-10 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <p class="font-mono text-xs text-sphere-lavender/70">© 2026 SphereMessage. Made in Lagos.</p>
+            <div class="flex items-center gap-5 text-sm text-sphere-lavender">
+                <a href="/" class="hover:text-white transition">Home</a>
+                <a href="/privacy.html" class="hover:text-white transition">Privacy</a>
+                <a href="mailto:spheremessage@gmail.com" class="hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const SUPPORT_EMAIL = 'spheremessage@gmail.com';
+            const form = document.getElementById('delete-form');
+            const message = document.getElementById('form-message');
+            const fallback = document.getElementById('email-fallback');
+            const preparedRequest = document.getElementById('prepared-request');
+            const copyButton = document.getElementById('copy-request');
+
+            if (!form || !message || !fallback || !preparedRequest || !copyButton) return;
+
+            function clean(value) {
+                return String(value || '').trim();
+            }
+
+            function buildRequest() {
+                const email = clean(document.getElementById('account-email').value).toLowerCase();
+                const smNumber = clean(document.getElementById('sm-number').value);
+                const phone = clean(document.getElementById('phone-number').value);
+                const username = clean(document.getElementById('username').value);
+                const details = clean(document.getElementById('details').value);
+
+                const lines = [
+                    'Hello SphereMessage Support,',
+                    '',
+                    'I am requesting permanent deletion of my SphereMessage account and associated data.',
+                    '',
+                    'Account email: ' + email,
+                    'SM Number: ' + (smNumber || 'Not provided'),
+                    'Phone number: ' + (phone || 'Not provided'),
+                    'Username/display name: ' + (username || 'Not provided'),
+                    'Additional details: ' + (details || 'None'),
+                    '',
+                    'I understand that this action is permanent. Please contact me if additional verification is required and confirm when the deletion is complete.',
+                    '',
+                    'Thank you.'
+                ];
+
+                return lines.join('\n');
+            }
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                if (!form.reportValidity()) return;
+
+                const requestText = buildRequest();
+                const subject = 'SphereMessage account deletion request';
+                const mailto = 'mailto:' + SUPPORT_EMAIL +
+                    '?subject=' + encodeURIComponent(subject) +
+                    '&body=' + encodeURIComponent(requestText);
+
+                preparedRequest.textContent = requestText;
+                fallback.classList.remove('hidden');
+                message.textContent = 'Your request is ready. Your email app should open now. Send the prepared email to complete the request.';
+                message.className = 'min-h-6 text-sm text-emerald-400';
+
+                window.location.href = mailto;
+                fallback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            copyButton.addEventListener('click', async function () {
+                const text = preparedRequest.textContent;
+                if (!text) return;
+
+                try {
+                    await navigator.clipboard.writeText(text);
+                    copyButton.textContent = 'Copied';
+                    setTimeout(function () { copyButton.textContent = 'Copy request text'; }, 1800);
+                } catch (error) {
+                    const range = document.createRange();
+                    range.selectNodeContents(preparedRequest);
+                    const selection = window.getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                    copyButton.textContent = 'Select and copy';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
