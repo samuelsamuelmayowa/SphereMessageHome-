@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Child Safety Standards | SphereMessage</title>
+
+  <meta
+    name="description"
+    content="SphereMessage child safety standards and policies against child sexual abuse and exploitation."
+  />
+
+  <meta name="theme-color" content="#080810" />
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="/assets/images/favicon.png"
+  />
+
+  <style>
+    :root {
+      --background: #080810;
+      --background-soft: #10101c;
+      --card: rgba(255, 255, 255, 0.055);
+      --card-strong: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f7f5ff;
+      --text-secondary: #c8c4d8;
+      --muted: #918ca6;
+      --primary: #8083ff;
+      --primary-dark: #494bd6;
+      --primary-light: #c0c1ff;
+      --success: #4ade80;
+      --danger: #ff837a;
+      --max-width: 960px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at 15% 0%,
+          rgba(128, 131, 255, 0.17),
+          transparent 36%
+        ),
+        radial-gradient(
+          circle at 90% 15%,
+          rgba(73, 75, 214, 0.15),
+          transparent 32%
+        ),
+        var(--background);
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--primary-light);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page-shell {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 8, 16, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .brand:hover {
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(192, 193, 255, 0.35);
+      border-radius: 50%;
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+      box-shadow: 0 0 30px rgba(128, 131, 255, 0.24);
+    }
+
+    .brand-mark span {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: white;
+    }
+
+    .nav-link {
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      border-color: rgba(192, 193, 255, 0.55);
+      background: rgba(128, 131, 255, 0.1);
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    main {
+      padding: 72px 0 96px;
+    }
+
+    .hero {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      padding: 8px 14px;
+      border: 1px solid rgba(192, 193, 255, 0.25);
+      border-radius: 999px;
+      background: rgba(128, 131, 255, 0.09);
+      color: var(--primary-light);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 12px rgba(74, 222, 128, 0.7);
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: clamp(2.3rem, 7vw, 4.7rem);
+      line-height: 1.03;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-description {
+      max-width: 680px;
+      margin: 24px auto 0;
+      color: var(--text-secondary);
+      font-size: clamp(1rem, 2vw, 1.16rem);
+    }
+
+    .updated {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .notice {
+      margin: 38px 0;
+      padding: 24px;
+      border: 1px solid rgba(255, 131, 122, 0.3);
+      border-radius: 24px;
+      background: rgba(255, 131, 122, 0.075);
+    }
+
+    .notice-title {
+      margin-bottom: 8px;
+      color: #ffaaa4;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .notice p {
+      color: var(--text-secondary);
+    }
+
+    .content-card {
+      margin-top: 22px;
+      padding: clamp(24px, 5vw, 44px);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.075),
+          rgba(255, 255, 255, 0.025)
+        );
+      box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    section + section {
+      margin-top: 42px;
+      padding-top: 42px;
+      border-top: 1px solid var(--border);
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      color: var(--primary-light);
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      margin: 24px 0 8px;
+      font-size: 1.05rem;
+    }
+
+    p {
+      color: var(--text-secondary);
+    }
+
+    p + p {
+      margin-top: 14px;
+    }
+
+    ul {
+      margin-top: 18px;
+      padding-left: 22px;
+    }
+
+    li {
+      padding-left: 7px;
+      color: var(--text-secondary);
+    }
+
+    li + li {
+      margin-top: 10px;
+    }
+
+    li::marker {
+      color: var(--primary);
+    }
+
+    .report-box {
+      margin-top: 22px;
+      padding: 22px;
+      border: 1px solid rgba(128, 131, 255, 0.28);
+      border-radius: 22px;
+      background: rgba(128, 131, 255, 0.075);
+    }
+
+    .email-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 12px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .email-link:hover {
+      text-decoration: none;
+      filter: brightness(1.08);
+    }
+
+    .important-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0 42px;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .navbar {
+        min-height: 68px;
+      }
+
+      .brand-name {
+        display: none;
+      }
+
+      main {
+        padding-top: 52px;
+      }
+
+      .content-card {
+        border-radius: 26px;
+      }
+
+      .footer-content {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="page-shell navbar">
+      <a class="brand" href="/">
+        <div class="brand-mark" aria-hidden="true">
+          <span>S</span>
+        </div>
+
+        <span class="brand-name">SphereMessage</span>
+      </a>
+
+      <a class="nav-link" href="/">
+        Back to home
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-shell">
+      <div class="hero">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Safety standards
+        </div>
+
+        <h1>Child Safety Standards</h1>
+
+        <p class="hero-description">
+          SphereMessage is committed to protecting children and
+          preventing child sexual abuse, exploitation and harmful
+          behaviour across our platform.
+        </p>
+
+        <p class="updated">
+          Last updated: August 1, 2026
+        </p>
+      </div>
+
+      <div class="notice">
+        <div class="notice-title">
+          SphereMessage is strictly for adults
+        </div>
+
+        <p>
+          SphereMessage is intended only for people aged 18 or older.
+          Minors are not permitted to create, maintain or use an
+          account on the platform.
+        </p>
+      </div>
+
+      <article class="content-card">
+        <section>
+          <h2>Our zero-tolerance policy</h2>
+
+          <p>
+            SphereMessage has zero tolerance for child sexual abuse
+            and exploitation, including child sexual abuse material,
+            grooming, sextortion, trafficking and any other conduct
+            that sexualizes, harms or exploits a child.
+          </p>
+
+          <p>
+            These standards apply to profiles, photos, videos,
+            messages, Hangouts, Moments, usernames, biographies,
+            comments and every other part of the SphereMessage
+            platform.
+          </p>
+        </section>
+
+        <section>
+          <h2>Prohibited content and conduct</h2>
+
+          <p>
+            Users must not create, upload, request, distribute,
+            promote, store or engage with:
+          </p>
+
+          <ul>
+            <li>
+              Child sexual abuse material, commonly referred to as
+              CSAM.
+            </li>
+
+            <li>
+              Sexual content or sexualized imagery involving a minor.
+            </li>
+
+            <li>
+              Grooming or attempts to establish sexual contact with a
+              minor.
+            </li>
+
+            <li>
+              Sextortion, sexual coercion or blackmail involving a
+              minor.
+            </li>
+
+            <li>
+              Child trafficking, solicitation or commercial sexual
+              exploitation.
+            </li>
+
+            <li>
+              Content that threatens, sexualizes, endangers or
+              exploits a child.
+            </li>
+
+            <li>
+              Attempts to obtain or share a minor's private,
+              identifying or location information for harmful
+              purposes.
+            </li>
+
+            <li>
+              Links, instructions or requests intended to help someone
+              find, create or distribute illegal child exploitation
+              material.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Reporting child-safety concerns</h2>
+
+          <p>
+            SphereMessage provides in-app reporting tools that allow
+            users to report accounts, profiles, messages, Hangouts and
+            other content.
+          </p>
+
+          <p>
+            Reports involving suspected child sexual abuse,
+            exploitation or immediate danger are treated as urgent
+            safety matters.
+          </p>
+
+          <div class="report-box">
+            <h3>Report by email</h3>
+
+            <p>
+              Child-safety concerns can also be reported directly to
+              the SphereMessage safety team.
+            </p>
+
+            <a
+              class="email-link"
+              href="mailto:spheremessage@gmail.com"
+            >
+              spheremessage@gmail.com
+            </a>
+
+            <p class="important-note">
+              Include the relevant username, SM number, date,
+              screenshots and other useful information. Do not
+              download, reproduce or redistribute suspected illegal
+              material.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Review and enforcement</h2>
+
+          <p>
+            SphereMessage may investigate reported accounts and
+            content, remove prohibited material, restrict features,
+            suspend accounts or permanently disable users who violate
+            these standards.
+          </p>
+
+          <p>
+            We may preserve relevant account and content information
+            when reasonably necessary to investigate a report, prevent
+            further harm or comply with a valid legal obligation.
+          </p>
+
+          <p>
+            Users who attempt to evade enforcement by creating
+            additional accounts may also be permanently restricted
+            from accessing SphereMessage.
+          </p>
+        </section>
+
+        <section>
+          <h2>Reporting to authorities</h2>
+
+          <p>
+            When SphereMessage becomes aware of confirmed or suspected
+            illegal child sexual abuse or exploitation, we may report
+            the matter to appropriate regional, national or
+            international child-protection and law-enforcement
+            authorities where required by applicable law.
+          </p>
+
+          <p>
+            SphereMessage will cooperate with valid legal
+            investigations and requests from authorized authorities
+            in accordance with applicable laws.
+          </p>
+        </section>
+
+        <section>
+          <h2>Age restrictions and account safety</h2>
+
+          <p>
+            SphereMessage requires users to confirm that they are at
+            least 18 years old. Accounts believed to belong to a minor
+            may be reviewed, restricted or removed.
+          </p>
+
+          <p>
+            Users should immediately report an account if they believe
+            the person operating it is under 18 or is attempting to
+            involve a child in unsafe or sexual activity.
+          </p>
+        </section>
+
+        <section>
+          <h2>Contact</h2>
+
+          <p>
+            Questions about SphereMessage's child-safety practices,
+            reporting procedures or compliance may be sent to:
+          </p>
+
+          <a
+            class="email-link"
+            href="mailto:spheremessage@gmail.com"
+          >
+            spheremessage@gmail.com
+          </a>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="page-shell footer-content">
+      <p>
+        © 2026 SphereMessage. All rights reserved.
+      </p>
+
+      <div class="footer-links">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms</a>
+        <a href="/">Home</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
