@@ -1,171 +1,326 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0714">
 
   <title>Join a Hangout | SphereMessage</title>
-
-  <meta
-    name="description"
-    content="You have been invited to join a Hangout on SphereMessage."
-  />
-
-  <meta
-    property="og:title"
-    content="Join this Hangout on SphereMessage"
-  />
-
-  <meta
-    property="og:description"
-    content="Open SphereMessage to see the Hangout and the people attending."
-  />
+  <meta name="description" content="You have been invited to join a Hangout on SphereMessage.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SphereMessage">
+  <meta property="og:title" content="Join this Hangout on SphereMessage">
+  <meta property="og:description" content="Open SphereMessage to see the Hangout, meet the host, and see who is attending.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Join this Hangout on SphereMessage">
+  <meta name="twitter:description" content="Open SphereMessage to see the Hangout, meet the host, and see who is attending.">
 
   <style>
+    :root {
+      color-scheme: dark;
+      --background: #0a0714;
+      --panel: rgba(20, 15, 38, 0.92);
+      --text: #f5f3ff;
+      --muted: #b8b0d0;
+      --pink: #ff3d71;
+      --violet: #8b5cf6;
+      --border: rgba(255, 255, 255, 0.12);
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    [hidden] {
+      display: none !important;
+    }
+
     body {
       min-height: 100vh;
+      min-height: 100svh;
       margin: 0;
       padding: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
       background:
-        radial-gradient(circle at top, #343087, #061020 60%);
-      color: #ffffff;
-      font-family: Poppins, Arial, sans-serif;
+        radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.38), transparent 48%),
+        radial-gradient(circle at 100% 100%, rgba(255, 61, 113, 0.18), transparent 42%),
+        var(--background);
+      color: var(--text);
+      font-family: Inter, Poppins, Arial, sans-serif;
     }
 
     .card {
-      width: 100%;
-      max-width: 480px;
+      width: min(100%, 480px);
       padding: 36px 28px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      border: 1px solid var(--border);
       border-radius: 32px;
-      background: rgba(11, 22, 48, 0.88);
+      background: var(--panel);
       text-align: center;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(18px);
+    }
+
+    .mark {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--violet));
+      box-shadow: 0 14px 40px rgba(139, 92, 246, 0.34);
+      font-size: 30px;
     }
 
     .logo {
       margin-bottom: 14px;
-      color: #c0c1ff;
-      font-size: 25px;
+      color: #d7d1ff;
+      font-size: 24px;
       font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .logo span {
+      color: var(--pink);
     }
 
     h1 {
       margin: 0 0 12px;
-      font-size: 30px;
-      line-height: 1.2;
+      font-size: clamp(27px, 7vw, 34px);
+      line-height: 1.15;
+      letter-spacing: -0.035em;
     }
 
     p {
-      margin: 0 0 28px;
-      color: #b8c2d9;
-      line-height: 1.7;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .actions {
+      margin-top: 28px;
+      display: grid;
+      gap: 12px;
     }
 
     button,
-    a.button {
+    .button {
       width: 100%;
       min-height: 56px;
-      margin-top: 12px;
-      padding: 16px 20px;
+      padding: 15px 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       border: 0;
       border-radius: 999px;
       font: inherit;
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
       cursor: pointer;
+      transition: transform 160ms ease, opacity 160ms ease, border-color 160ms ease;
+    }
+
+    button:active,
+    .button:active {
+      transform: scale(0.98);
+    }
+
+    button:focus-visible,
+    .button:focus-visible {
+      outline: 3px solid rgba(255, 61, 113, 0.5);
+      outline-offset: 3px;
     }
 
     .primary {
-      background: linear-gradient(90deg, #8083ff, #5a45ef);
-      color: #071020;
+      background: linear-gradient(90deg, var(--pink), var(--violet));
+      color: #ffffff;
+      box-shadow: 0 14px 34px rgba(139, 92, 246, 0.28);
     }
 
     .secondary {
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(255, 255, 255, 0.07);
-      color: #ffffff;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+    }
+
+    .status {
+      min-height: 24px;
+      margin-top: 18px;
+      color: #d7d1e8;
+      font-size: 14px;
+    }
+
+    .install-panel {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .install-panel strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+
+    .install-panel p {
+      font-size: 14px;
     }
 
     .small {
       margin-top: 24px;
-      color: #8490ab;
+      color: #8e86a7;
       font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .error {
+      color: #ff9db8;
+    }
+
+    @media (max-width: 420px) {
+      body {
+        padding: 16px;
+      }
+
+      .card {
+        padding: 30px 20px;
+        border-radius: 26px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      button,
+      .button {
+        transition: none;
+      }
     }
   </style>
 </head>
 
 <body>
   <main class="card">
-    <div class="logo">SphereMessage</div>
+    <div class="mark" aria-hidden="true">◎</div>
+    <div class="logo">Sphere<span>Message</span></div>
 
     <h1>You’ve been invited to a Hangout</h1>
-
-    <p>
-      Open SphereMessage to view the Hangout,
-      meet the host and see who is attending.
+    <p id="intro">
+      Open SphereMessage to view the Hangout, meet the host, and see who is attending.
     </p>
 
-    <button
-      id="open-app"
-      class="primary"
-      type="button"
-    >
-      Open in SphereMessage
-    </button>
+    <div class="actions">
+      <button id="open-app" class="primary" type="button">
+        Open in SphereMessage
+      </button>
 
-    <a
-      class="button secondary"
-      href="/"
-    >
-      Visit SphereMessage
-    </a>
+      <a class="button secondary" href="/">
+        Visit SphereMessage
+      </a>
+    </div>
+
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+
+    <section id="install-panel" class="install-panel" hidden>
+      <strong>Don’t have SphereMessage yet?</strong>
+      <p>Install the Android app, then open this invitation link again.</p>
+
+      <div class="actions">
+        <a id="play-store" class="button primary" href="#" rel="noopener">
+          Get it on Google Play
+        </a>
+
+        <a id="apk-download" class="button secondary" href="#" rel="noopener" hidden>
+          Download the Android APK
+        </a>
+      </div>
+    </section>
 
     <div class="small">
-      SphereMessage is available on Android for now.
-      The iOS version is coming soon.
+      SphereMessage is available on Android for now. The iOS version is coming soon.
     </div>
   </main>
 
   <script>
-    const pathParts =
-      window.location.pathname
-        .split("/")
-        .filter(Boolean);
+    // Replace this empty value with the public HTTPS URL of your signed APK.
+    // The APK button stays hidden until a real URL is supplied.
+    const APK_DOWNLOAD_URL = "";
 
-    const hangoutId =
-      pathParts[0] === "hangout"
-        ? pathParts[1]
-        : null;
+    const PLAY_STORE_URL =
+      "https://play.google.com/store/apps/details?id=com.sphereandroid.app";
 
-    const openButton =
-      document.getElementById("open-app");
+    const openButton = document.getElementById("open-app");
+    const installPanel = document.getElementById("install-panel");
+    const playStoreButton = document.getElementById("play-store");
+    const apkButton = document.getElementById("apk-download");
+    const status = document.getElementById("status");
+    const intro = document.getElementById("intro");
+
+    function readHangoutId() {
+      const match = window.location.pathname.match(/^\/hangout\/([^/?#]+)\/?$/i);
+      if (!match) return null;
+
+      try {
+        const value = decodeURIComponent(match[1]);
+        return /^[a-zA-Z0-9][a-zA-Z0-9._-]{0,63}$/.test(value)
+          ? value
+          : null;
+      } catch {
+        return null;
+      }
+    }
+
+    const hangoutId = readHangoutId();
+    let fallbackTimer = null;
+    let appWasOpened = false;
+
+    playStoreButton.href = PLAY_STORE_URL;
+
+    if (APK_DOWNLOAD_URL.startsWith("https://")) {
+      apkButton.href = APK_DOWNLOAD_URL;
+      apkButton.hidden = false;
+    }
+
+    function markAppOpened() {
+      appWasOpened = true;
+      if (fallbackTimer) window.clearTimeout(fallbackTimer);
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) markAppOpened();
+    });
+
+    window.addEventListener("pagehide", markAppOpened);
+
+    if (!hangoutId) {
+      openButton.disabled = true;
+      openButton.style.opacity = "0.55";
+      openButton.style.cursor = "not-allowed";
+      intro.textContent = "This invitation link is incomplete or invalid.";
+      status.textContent = "Ask the host to send you a new Hangout link.";
+      status.classList.add("error");
+    }
 
     openButton.addEventListener("click", () => {
-      if (!hangoutId) {
-        window.location.href = "/";
-        return;
-      }
+      if (!hangoutId) return;
 
-      const appUrl =
-        "spheremessage://hangout/" +
-        encodeURIComponent(hangoutId);
+      appWasOpened = false;
+      installPanel.hidden = true;
+      status.classList.remove("error");
+      status.textContent = "Opening SphereMessage…";
 
-      window.location.href = appUrl;
+      if (fallbackTimer) window.clearTimeout(fallbackTimer);
+
+      fallbackTimer = window.setTimeout(() => {
+        if (appWasOpened || document.hidden) return;
+
+        status.textContent = "SphereMessage did not open on this device.";
+        installPanel.hidden = false;
+        installPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 1800);
+
+      window.location.href =
+        "spheremessage://hangout/" + encodeURIComponent(hangoutId);
     });
   </script>
 </body>
