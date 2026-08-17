@@ -1,0 +1,11 @@
+
+// {
+//   "cleanUrls": true,
+//   "trailingSlash": false,
+//   "rewrites": [
+//     {
+//       "source": "/delete-account",
+//       "destination": "/delete-account/index.html"
+//     }
+//   ]
+// }

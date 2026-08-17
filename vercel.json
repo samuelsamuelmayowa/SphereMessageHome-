@@ -5,6 +5,10 @@
     {
       "source": "/delete-account",
       "destination": "/delete-account/index.html"
+    },
+    {
+      "source": "/hangout/:hangoutId",
+      "destination": "/hangout"
     }
   ]
 }
