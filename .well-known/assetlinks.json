@@ -1,8 +1,3 @@
-
-
-
-
-
 [
   {
     "relation": [
@@ -12,6 +7,7 @@
       "namespace": "android_app",
       "package_name": "com.sphereandroid.app",
       "sha256_cert_fingerprints": [
+        "0D:41:DC:70:5B:C3:54:7B:45:7D:17:3A:BD:0C:B6:DF:56:BB:EB:F9:BB:9B:F6:6C:16:C7:8D:A8:DA:28:60:76",
         "8D:C3:2E:55:C8:B2:FF:19:83:B9:B0:E1:B9:EF:2A:6A:FC:AE:DF:E1:89:C2:BF:32:22:36:03:AE:9A:0B:B6:75"
       ]
     }
