@@ -1,11 +1,25 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.getspheremessage.com" }],
+      "destination": "https://getspheremessage.com/:path*",
+      "permanent": true
+    },
     {
       "source": "/delete-account",
-      "destination": "/delete-account/index.html"
+      "destination": "/delete",
+      "permanent": true
     },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
     {
       "source": "/hangout/:hangoutId",
       "destination": "/hangout"
