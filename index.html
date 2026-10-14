@@ -4,24 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SphereMessage | Meet People Nearby &amp; Make Friends in Lagos</title>
-    <meta name="description" content="Meet people nearby, make friends and discover local hangouts in Lagos with SphereMessage. Available now for Android on Google Play.">
+    <title>SphereMessage | Discover People, Hangouts &amp; Conversations</title>
+    <meta name="description" content="Discover nearby hangouts, meet people through shared interests, join live conversations, and connect with your community on SphereMessage.">
     <meta name="theme-color" content="#2049EE">
     <link rel="canonical" href="https://getspheremessage.com/">
     <link rel="icon" type="image/png" href="/images/sphere-app-icon-1024.png">
     <link rel="apple-touch-icon" href="/images/sphere-app-icon-1024.png">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="SphereMessage">
-    <meta property="og:title" content="SphereMessage | Meet People Nearby &amp; Make Friends in Lagos">
-    <meta property="og:description" content="Meet people nearby, make friends and discover local hangouts in Lagos with SphereMessage. Available now for Android on Google Play.">
+    <meta property="og:title" content="SphereMessage | Discover People, Hangouts &amp; Conversations">
+    <meta property="og:description" content="Discover nearby hangouts, meet people through shared interests, join live conversations, and connect with your community on SphereMessage.">
     <meta property="og:url" content="https://getspheremessage.com/">
     <meta property="og:image" content="https://getspheremessage.com/images/sphere-app-icon-1024.png">
     <meta property="og:image:alt" content="SphereMessage blue and charcoal logo">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="SphereMessage | Meet People Nearby &amp; Make Friends in Lagos">
-    <meta name="twitter:description" content="Meet people nearby, make friends and discover local hangouts in Lagos with SphereMessage. Available now for Android on Google Play.">
+    <meta name="twitter:title" content="SphereMessage | Discover People, Hangouts &amp; Conversations">
+    <meta name="twitter:description" content="Discover nearby hangouts, meet people through shared interests, join live conversations, and connect with your community on SphereMessage.">
     <meta name="twitter:image" content="https://getspheremessage.com/images/sphere-app-icon-1024.png">
-    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://getspheremessage.com/#website","name":"SphereMessage","url":"https://getspheremessage.com/","inLanguage":"en"},{"@type":"MobileApplication","name":"SphereMessage","operatingSystem":"Android","applicationCategory":"SocialNetworkingApplication","url":"https://getspheremessage.com/","downloadUrl":"https://play.google.com/store/apps/details?id=com.sphereandroid.app","image":"https://getspheremessage.com/images/sphere-app-icon-1024.png","description":"Meet people nearby, make friends and discover local hangouts in Lagos with SphereMessage. Available now for Android on Google Play.","areaServed":{"@type":"City","name":"Lagos"},"featureList":["Discover people nearby","Find friends with shared interests","Explore local hangouts and events"],"@id":"https://getspheremessage.com/#app","installUrl":"https://play.google.com/store/apps/details?id=com.sphereandroid.app"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"SphereMessage","url":"https://getspheremessage.com/","description":"Discover nearby hangouts, meet people through shared interests, join live conversations, and connect with your community on SphereMessage.","inLanguage":"en"}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -53,6 +53,8 @@
         }
     </script>
     <style>
+        [hidden] { display: none !important; }
+
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 80px;
@@ -278,6 +280,7 @@
             }
         }
     </style>
+    <script src="/src/platform.js" defer></script>
 </head>
 
 <body class="font-body text-sphere-white antialiased">
@@ -318,17 +321,17 @@
                 <div
                     class="inline-flex items-center gap-2 tag text-xs text-sphere-muted border border-white/10 rounded-full px-3 py-1.5 mb-6">
                     <span class="w-1.5 h-1.5 rounded-full bg-sphere-blue animate-pulse"></span>
-                    Available now on Google Play
+                    Designed for iPhone and Android
                 </div>
                 <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[1.12] tracking-tight">
-                    Meet people nearby in Lagos.<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-sphere-blue to-sphere-sky">Find your people.</span>
+                    Discover people.<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-sphere-blue to-sphere-sky">Find your vibe. Connect in real life.</span>
                 </h1>
                 <p class="mt-6 text-lg text-sphere-muted max-w-md">
-                    SphereMessage is an Android social discovery app for meeting people nearby in Lagos. Make new friends through shared interests, discover local hangouts, and connect for friendship, dating or networking.
+                    SphereMessage is a social discovery platform designed for iPhone and Android that brings people, conversations, shared interests, and real-world experiences together. Discover nearby hangouts, connect with people in your sphere, join live conversations, and create meaningful experiences.
                 </p>
                 <div class="mt-8 flex flex-wrap gap-3">
-                    <span class="flex items-center rounded-2xl border border-white/15 px-5 py-3 text-sm text-sphere-muted">iOS app coming soon</span>
+                    <span data-ios-download class="flex items-center rounded-2xl border border-white/15 px-5 py-3 text-sm text-sphere-muted">iOS Launch in Progress</span>
                     <a href="https://play.google.com/store/apps/details?id=com.sphereandroid.app"
                         class="order-first flex items-center gap-3 bg-white text-sphere-black rounded-2xl px-5 py-3 hover:bg-sphere-muted transition">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -341,7 +344,7 @@
                         </span>
                     </a>
                 </div>
-                <p class="mt-4 text-xs text-sphere-muted/70 tag">Available now for Android on Google Play. iOS is coming soon.</p>
+                <p data-ios-availability class="mt-4 text-xs text-sphere-muted/70 tag">Android is available on Google Play. The iPhone app is undergoing Apple’s review and is not yet publicly available.</p>
             </div>
 
             <!-- Radar signature -->
@@ -371,200 +374,39 @@
                 <div class="relative pl-6 border-l border-white/10 reveal" style="--reveal-delay:0s">
                     <span class="tag text-sphere-muted/50 text-sm">01</span>
                     <h3 class="font-display font-semibold text-xl mt-2">Profiles</h3>
-                    <p class="mt-3 text-sphere-muted text-sm leading-relaxed">Set your hobbies, love language, vibe
-                        tags and what you're actually looking for. This is what every match is built on.</p>
+                    <p class="mt-3 text-sphere-muted text-sm leading-relaxed">Manage your personal interests, discovery preferences, and Sphere identity.</p>
                 </div>
                 <div class="relative pl-6 border-l border-sphere-sky/40 reveal" style="--reveal-delay:0.12s">
                     <span class="tag text-sphere-muted/50 text-sm">02</span>
                     <h3 class="font-display font-semibold text-xl mt-2">Sphere Radar</h3>
-                    <p class="mt-3 text-sphere-muted text-sm leading-relaxed">See who's around you right now, ranked
-                        by vibe match, not just distance. Switch "Nearby" on only when you want to be found.</p>
+                    <p class="mt-3 text-sphere-muted text-sm leading-relaxed">Discover nearby people, shared interests, and local activity.</p>
                 </div>
                 <div class="relative pl-6 border-l border-sphere-blue/40 reveal" style="--reveal-delay:0.24s">
                     <span class="tag text-sphere-muted/50 text-sm">03</span>
                     <h3 class="font-display font-semibold text-xl mt-2">Feeds</h3>
-                    <p class="mt-3 text-sphere-muted text-sm leading-relaxed">People nearby, events tonight,
-                        confessions around you. The feed is where a match turns into an actual plan.</p>
+                    <p class="mt-3 text-sphere-muted text-sm leading-relaxed">Discover nearby community activity, people, and hangouts.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MATCHING ALGORITHMS -->
+    <!-- DISCOVERY FEATURES -->
     <section id="radar" class="border-t border-white/5 bg-sphere-panel/40">
-        <div class="max-w-7xl mx-auto px-6 py-20">
-            <p class="tag text-xs text-sphere-sky mb-3 reveal">What powers the match</p>
-            <h2 class="font-display font-bold text-3xl md:text-4xl max-w-xl reveal">Four signals decide who shows up on
-                your radar.</h2>
-
-            <div class="mt-12 grid md:grid-cols-2 gap-6">
-                <div class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal"
-                    style="--reveal-delay:0s">
-                    <div class="flex items-center gap-2 mb-4">
-                        <span class="text-2xl">🎧</span>
-                        <h3 class="font-display font-semibold text-lg">Hobbies</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Music</span>
-                        <span
-                            class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Football</span>
-                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Anime</span>
-                        <span
-                            class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Photography</span>
-                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Gym</span>
-                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">+ more</span>
-                    </div>
-                </div>
-
-                <div class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal"
-                    style="--reveal-delay:0.1s">
-                    <div class="flex items-center gap-2 mb-4">
-                        <span class="text-2xl">❤️</span>
-                        <h3 class="font-display font-semibold text-lg">Love languages</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span
-                            class="tag text-xs bg-sphere-blue/10 text-sphere-blue border border-sphere-blue/20 rounded-full px-3 py-1">Quality
-                            Time</span>
-                        <span
-                            class="tag text-xs bg-sphere-blue/10 text-sphere-blue border border-sphere-blue/20 rounded-full px-3 py-1">Gifts</span>
-
-
-                        <span
-                            class="tag text-xs bg-sphere-blue/10 text-sphere-blue border border-sphere-blue/20 rounded-full px-3 py-1">Money</span>
-                        <span
-                            class="tag text-xs bg-sphere-blue/10 text-sphere-blue border border-sphere-blue/20 rounded-full px-3 py-1">Words
-                            of Affirmation</span>
-                        <span
-                            class="tag text-xs bg-sphere-blue/10 text-sphere-blue border border-sphere-blue/20 rounded-full px-3 py-1">Physical
-                            Touch</span>
-                        <span
-                            class="tag text-xs bg-sphere-blue/10 text-sphere-blue border border-sphere-blue/20 rounded-full px-3 py-1">Acts
-                            of Service</span>
-                    </div>
-                </div>
-
-                <div class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal"
-                    style="--reveal-delay:0.2s">
-                    <div class="flex items-center gap-2 mb-4">
-                        <span class="text-2xl">🎯</span>
-                        <h3 class="font-display font-semibold text-lg">Looking for</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span
-                            class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Friendship</span>
-                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Dating</span>
-                        <span
-                            class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Networking</span>
-                        <span
-                            class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Hangouts</span>
-                        <span class="tag text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1">Friends with
-                            Benefit</span>
-                    </div>
-                </div>
-
-                <div class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal"
-                    style="--reveal-delay:0.3s">
-                    <div class="flex items-center gap-2 mb-4">
-                        <span class="text-2xl">✨</span>
-                        <h3 class="font-display font-semibold text-lg">Vibe tags</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span
-                            class="tag text-xs bg-sphere-sky/10 text-sphere-sky border border-sphere-sky/20 rounded-full px-3 py-1">Funny</span>
-                        <span
-                            class="tag text-xs bg-sphere-sky/10 text-sphere-sky border border-sphere-sky/20 rounded-full px-3 py-1">Deep
-                            Thinker</span>
-                        <span
-                            class="tag text-xs bg-sphere-sky/10 text-sphere-sky border border-sphere-sky/20 rounded-full px-3 py-1">Soft
-                            Life</span>
-                        <span
-                            class="tag text-xs bg-sphere-sky/10 text-sphere-sky border border-sphere-sky/20 rounded-full px-3 py-1">Tech
-                            Bro</span>
-                        <span
-                            class="tag text-xs bg-sphere-sky/10 text-sphere-sky border border-sphere-sky/20 rounded-full px-3 py-1">Spiritual</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sphere Questions -->
-            <div class="mt-16 reveal">
-                <p class="tag text-xs text-sphere-blue mb-3">Sphere Questions</p>
-                <h3 class="font-display font-semibold text-2xl mb-6">The questions that say more than a bio ever could.
-                </h3>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-5 text-sm text-sphere-muted reveal"
-                        style="--reveal-delay:0s">"Biggest green flag?"</div>
-                    <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-5 text-sm text-sphere-muted reveal"
-                        style="--reveal-delay:0.08s">"What instantly attracts you?"</div>
-                    <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-5 text-sm text-sphere-muted reveal"
-                        style="--reveal-delay:0.16s">"Ideal first hangout?"</div>
-                    <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-5 text-sm text-sphere-muted reveal"
-                        style="--reveal-delay:0.24s">"What's your toxic trait?"</div>
-                </div>
-            </div>
-        </div>
+      <div class="max-w-7xl mx-auto px-6 py-20">
+        <p class="tag text-xs text-sphere-sky mb-3 reveal">Explore your sphere</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl max-w-xl reveal">People, plans, and conversations nearby.</h2>
+        <div class="mt-12 grid md:grid-cols-2 gap-6"><article class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal" style="--reveal-delay:0s"><span class="text-2xl" aria-hidden="true">◎</span><h3 class="font-display font-semibold text-lg mt-4 mb-3">Sphere Radar</h3><p class="text-sphere-muted">Discover nearby people, shared interests, and local activity.</p></article>
+<article class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal" style="--reveal-delay:0.1s"><span class="text-2xl" aria-hidden="true">🎉</span><h3 class="font-display font-semibold text-lg mt-4 mb-3">Hangouts</h3><p class="text-sphere-muted">Create, discover, and join real-world gatherings.</p></article>
+<article class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal" style="--reveal-delay:0.2s"><span class="text-2xl" aria-hidden="true">💬</span><h3 class="font-display font-semibold text-lg mt-4 mb-3">Moments</h3><p class="text-sphere-muted">Create or join live conversations and temporary community discussions.</p></article>
+<article class="rounded-3xl bg-sphere-panel2 border border-white/5 p-8 card-glow transition reveal" style="--reveal-delay:0.30000000000000004s"><span class="text-2xl" aria-hidden="true">✉</span><h3 class="font-display font-semibold text-lg mt-4 mb-3">Private Messaging</h3><p class="text-sphere-muted">Connect and communicate privately with other users.</p></article></div>
+      </div>
     </section>
 
-    <!-- PROFILE SHOWCASE -->
     <section id="profile" class="border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-14 items-center">
-            <div class="reveal">
-                <p class="tag text-xs text-sphere-sky mb-3">Your profile</p>
-                <h2 class="font-display font-bold text-3xl md:text-4xl mb-6">A profile that reads like a person, not a
-                    form.</h2>
-                <p class="text-sphere-muted mb-8 max-w-md">Three photos, a voice intro, your vibes up top, and
-                    receipts to back it up — profile visits, hangouts attended, and where you rank in your area.</p>
-                <div class="flex gap-8">
-                    <div>
-                        <p class="font-display font-bold text-2xl">1.2k</p>
-                        <p class="tag text-xs text-sphere-muted">🔥 profile visits</p>
-                    </div>
-                    <div>
-                        <p class="font-display font-bold text-2xl">230</p>
-                        <p class="tag text-xs text-sphere-muted">💬 interests received</p>
-                    </div>
-                    <div>
-                        <p class="font-display font-bold text-2xl">12</p>
-                        <p class="tag text-xs text-sphere-muted">🎉 hangouts attended</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Profile card mock -->
-            <div class="rounded-[2rem] bg-gradient-to-b from-sphere-panel2 to-sphere-panel border border-white/10 p-6 max-w-sm mx-auto shadow-2xl shadow-black/40 reveal-scale"
-                data-parallax="-0.08" style="--reveal-delay:0.15s">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-2">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sphere-blue to-sphere-sky"></div>
-                        <div>
-                            <p class="font-display font-semibold">Ada, 23</p>
-                            <p class="tag text-xs text-sphere-muted">📍 Around Yaba</p>
-                        </div>
-                    </div>
-                    <span class="tag text-xs flex items-center gap-1 text-emerald-400"><span
-                            class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Online</span>
-                </div>
-                <p class="italic text-sphere-muted text-sm mb-4">"Soft life + deep conversations."</p>
-                <div class="space-y-2 text-sm mb-4">
-                    <p><span class="text-sphere-blue">❤️ Love Language</span> — Quality Time · Words</p>
-                    <p><span class="text-sphere-sky">🎯 Looking For</span> — Friendship · Dating · Hangouts</p>
-                    <p><span class="text-sphere-muted">✨ Vibes</span> — Funny · Creative · Night Owl</p>
-                    <p><span class="text-sphere-muted">🎵 Interests</span> — Music · Fashion · Beach · Anime</p>
-                </div>
-                <p class="tag text-xs text-sphere-muted/70 mb-5">🎤 Voice intro available · 📸 Photos · 🎥 Moments ·
-                    📝 Sphere Questions</p>
-                <div class="flex gap-2">
-                    <button
-                        class="flex-1 bg-sphere-blue text-white text-sm font-semibold rounded-xl py-2.5 hover:brightness-110 transition">Send
-                        Interest</button>
-                    <button
-                        class="px-3 bg-white/5 border border-white/10 rounded-xl text-sm hover:bg-white/10 transition">👋</button>
-                    <button
-                        class="px-3 bg-white/5 border border-white/10 rounded-xl text-sm hover:bg-white/10 transition">🎉</button>
-                </div>
-            </div>
-        </div>
+      <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-14 items-center">
+        <div class="reveal"><p class="tag text-xs text-sphere-sky mb-3">Profiles</p><h2 class="font-display font-bold text-3xl md:text-4xl mb-6">Your interests. Your Sphere identity.</h2><p class="text-sphere-muted max-w-md">Manage your personal interests and discovery preferences, and introduce yourself to your community.</p></div>
+        <div class="rounded-[2rem] bg-gradient-to-b from-sphere-panel2 to-sphere-panel border border-white/10 p-8 shadow-2xl shadow-black/40 reveal-scale" data-parallax="-0.08"><h3 class="font-display font-semibold text-xl mb-5">Make it personal</h3><ul class="space-y-4 text-sphere-muted"><li>Personal interests</li><li>Discovery preferences</li><li>Your Sphere identity</li></ul></div>
+      </div>
     </section>
 
     <!-- FEEDS -->
@@ -582,27 +424,73 @@
                 <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-6 card-glow transition reveal"
                     style="--reveal-delay:0.08s">
                     <p class="text-2xl mb-3">🎉</p>
-                    <p class="font-display font-semibold text-sm">Events Tonight</p>
+                    <p class="font-display font-semibold text-sm">Nearby Hangouts</p>
                 </div>
                 <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-6 card-glow transition reveal"
                     style="--reveal-delay:0.16s">
                     <p class="text-2xl mb-3">👀</p>
-                    <p class="font-display font-semibold text-sm">Someone Viewed You</p>
+                    <p class="font-display font-semibold text-sm">Community Activity</p>
                 </div>
                 <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-6 card-glow transition reveal"
                     style="--reveal-delay:0.24s">
                     <p class="text-2xl mb-3">🫣</p>
-                    <p class="font-display font-semibold text-sm">Confessions Around You</p>
+                    <p class="font-display font-semibold text-sm">Shared Interests</p>
                 </div>
                 <div class="rounded-2xl bg-sphere-panel2 border border-white/5 p-6 card-glow transition reveal"
                     style="--reveal-delay:0.32s">
                     <p class="text-2xl mb-3">✨</p>
-                    <p class="font-display font-semibold text-sm">Trending People</p>
+                    <p class="font-display font-semibold text-sm">Local Conversations</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Original iPhone screenshots supplied by the app owner. -->
+    <section id="ios-screenshots" class="border-t border-white/5" aria-labelledby="ios-screenshots-title">
+      <div class="max-w-7xl mx-auto px-6 py-20">
+        <p class="tag text-xs text-sphere-sky mb-3">SphereMessage on iPhone</p>
+        <h2 id="ios-screenshots-title" class="font-display font-bold text-3xl md:text-4xl mb-4">A look inside your sphere.</h2>
+        <p class="text-sphere-muted mb-8">Explore the iPhone app. Select a screenshot to view it at full size.</p>
+        <div id="ios-screenshot-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <figure class="min-w-0 mx-auto w-full max-w-sm">
+          <a href="/images/ios/01_Feed_Discover_Events.png" class="block rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sphere-blue" aria-label="View full-size screenshot: Feed — discover local activity">
+            <img src="/images/ios/01_Feed_Discover_Events.png" alt="SphereMessage iPhone Feed showing nearby activity and a featured hangout." width="1179" height="2556" loading="lazy" decoding="async" class="w-full h-auto rounded-3xl border border-white/10" />
+          </a>
+          <figcaption class="mt-4 text-center text-sm text-sphere-muted">Feed — discover local activity</figcaption>
+        </figure>
+        <figure class="min-w-0 mx-auto w-full max-w-sm">
+          <a href="/images/ios/02_Find_Hangouts.png" class="block rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sphere-blue" aria-label="View full-size screenshot: Hangouts — find your next gathering">
+            <img src="/images/ios/02_Find_Hangouts.png" alt="SphereMessage iPhone Hangouts screen showing trending gatherings and event cards." width="1179" height="2556" loading="lazy" decoding="async" class="w-full h-auto rounded-3xl border border-white/10" />
+          </a>
+          <figcaption class="mt-4 text-center text-sm text-sphere-muted">Hangouts — find your next gathering</figcaption>
+        </figure>
+        <figure class="min-w-0 mx-auto w-full max-w-sm">
+          <a href="/images/ios/03_Radar_Nearby.png" class="block rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sphere-blue" aria-label="View full-size screenshot: Sphere Radar — explore nearby">
+            <img src="/images/ios/03_Radar_Nearby.png" alt="SphereMessage iPhone Radar showing search, discovery filters, and nearby activity." width="1179" height="2556" loading="lazy" decoding="async" class="w-full h-auto rounded-3xl border border-white/10" />
+          </a>
+          <figcaption class="mt-4 text-center text-sm text-sphere-muted">Sphere Radar — explore nearby</figcaption>
+        </figure>
+        <figure class="min-w-0 mx-auto w-full max-w-sm">
+          <a href="/images/ios/04_Discover_People.png" class="block rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sphere-blue" aria-label="View full-size screenshot: Discover people in your sphere">
+            <img src="/images/ios/04_Discover_People.png" alt="SphereMessage iPhone Feed showing people with shared interests and profile links." width="1179" height="2556" loading="lazy" decoding="async" class="w-full h-auto rounded-3xl border border-white/10" />
+          </a>
+          <figcaption class="mt-4 text-center text-sm text-sphere-muted">Discover people in your sphere</figcaption>
+        </figure>
+        <figure class="min-w-0 mx-auto w-full max-w-sm">
+          <a href="/images/ios/05_Join_Moments.png" class="block rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sphere-blue" aria-label="View full-size screenshot: Moments — join live conversations">
+            <img src="/images/ios/05_Join_Moments.png" alt="SphereMessage iPhone Moments screen showing an active conversation and a public Moment." width="1179" height="2556" loading="lazy" decoding="async" class="w-full h-auto rounded-3xl border border-white/10" />
+          </a>
+          <figcaption class="mt-4 text-center text-sm text-sphere-muted">Moments — join live conversations</figcaption>
+        </figure>
+        <figure class="min-w-0 mx-auto w-full max-w-sm">
+          <a href="/images/ios/06_Your_Profile.png" class="block rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sphere-blue" aria-label="View full-size screenshot: Profiles — make your sphere yours">
+            <img src="/images/ios/06_Your_Profile.png" alt="SphereMessage iPhone Profile showing profile progress, SM Number, and Radar visibility." width="1179" height="2556" loading="lazy" decoding="async" class="w-full h-auto rounded-3xl border border-white/10" />
+          </a>
+          <figcaption class="mt-4 text-center text-sm text-sphere-muted">Profiles — make your sphere yours</figcaption>
+        </figure>
+        </div>
+      </div>
+    </section>
     <!-- DOWNLOAD CTA -->
     <section id="download" class="relative border-t border-white/5 overflow-hidden">
         <div class="absolute inset-0 bg-radial-glow" data-parallax="0.2"></div>
@@ -612,9 +500,9 @@
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-sphere-blue to-sphere-sky">Come find
                     your people.</span>
             </h2>
-            <p class="text-sphere-muted mb-10 max-w-lg mx-auto reveal" style="--reveal-delay:0.1s">SphereMessage is available now for Android on Google Play. Download the app to meet people nearby, make friends and explore local hangouts in Lagos.</p>
+            <p data-ios-availability class="text-sphere-muted mb-10 max-w-lg mx-auto reveal" style="--reveal-delay:0.1s">Designed for iPhone and Android. Download the Android app on Google Play. iOS Launch in Progress: the iPhone app is undergoing Apple’s review and is not yet publicly available on the App Store.</p>
 <div class="flex flex-wrap justify-center gap-3 mb-6 reveal" style="--reveal-delay:0.2s">
-                <span class="flex items-center rounded-2xl border border-white/15 px-5 py-3 text-sm text-sphere-muted">iOS app coming soon</span>
+                <span data-ios-download class="flex items-center rounded-2xl border border-white/15 px-5 py-3 text-sm text-sphere-muted">iOS Launch in Progress</span>
                 <a href="https://play.google.com/store/apps/details?id=com.sphereandroid.app"
                     class="order-first flex items-center gap-3 bg-white text-sphere-black rounded-2xl px-5 py-3 hover:bg-sphere-muted transition">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -627,6 +515,7 @@
                     </span>
                 </a>
             </div>
+            <div data-ios-waitlist>
             <h3 class="font-display text-xl font-semibold mt-12 mb-3">Waiting for SphereMessage on iPhone?</h3>
             <p class="text-sphere-muted mb-6">Join the iOS waitlist for launch updates.</p>
             <form id="waitlist-form" class="max-w-2xl mx-auto mb-10 reveal" style="--reveal-delay:0.18s">
@@ -658,6 +547,7 @@
                     We may contact you by email or phone about the iOS launch. Android users can download directly from Google Play above.
                 </p>
             </form>
+            </div>
         </div>
     </section>
 
@@ -673,7 +563,8 @@
             <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-sphere-muted/60">
                 <a href="/privacy" class="hover:text-sphere-white transition">Privacy</a>
                 <a href="/delete" class="hover:text-sphere-white transition">Delete account</a>
-                <span class="tag">© 2026 SphereMessage. Made in Lagos.</span>
+                <a href="mailto:spheremessage@gmail.com" class="hover:text-sphere-white transition">Support &amp; Contact</a>
+                <span class="tag">© 2026 SphereMessage. Social discovery for iPhone and Android.</span>
             </div>
         </div>
     </footer>
