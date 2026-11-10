@@ -37,7 +37,7 @@ module.exports = async function accountDeletion(req, res) {
     try {
         const endpoint = APPWRITE_ENDPOINT.replace(/\/+$/, '');
         const database = encodeURIComponent(APPWRITE_DATABASE_ID);
-        const response = await fetch(`${endpoint}/tablesdb/${database}/tables/account_deletion_requests/rows`, {
+        const response = await fetch(`${endpoint}/tablesdb/${database}/tables/6af395c60022b7c114ba/rows`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
