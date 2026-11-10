@@ -25,6 +25,9 @@ module.exports = async function accountDeletion(req, res) {
 
     const { APPWRITE_ENDPOINT, APPWRITE_PROJECT_ID, APPWRITE_DATABASE_ID, APPWRITE_DELETION_API_KEY } = process.env;
     if (!APPWRITE_ENDPOINT || !APPWRITE_PROJECT_ID || !APPWRITE_DATABASE_ID || !APPWRITE_DELETION_API_KEY) {
+        const missing = ['APPWRITE_ENDPOINT', 'APPWRITE_PROJECT_ID', 'APPWRITE_DATABASE_ID', 'APPWRITE_DELETION_API_KEY']
+            .filter((name) => !process.env[name]?.trim());
+        console.error('Account deletion: missing environment variables', missing);
         return res.status(503).json({ error: 'Request submission is temporarily unavailable.' });
     }
 
@@ -47,7 +50,11 @@ module.exports = async function accountDeletion(req, res) {
         if (response.ok || response.status === 409) {
             return res.status(202).json({ received: true });
         }
-    } catch {
+        console.error('Account deletion: Appwrite rejected the row', { status: response.status });
+    } catch (error) {
+        console.error('Account deletion: Appwrite request failed', {
+            reason: error?.name === 'TimeoutError' ? 'timeout' : 'connection or invalid endpoint'
+        });
         return res.status(503).json({ error: 'Request submission is temporarily unavailable.' });
     }
     return res.status(503).json({ error: 'Request submission is temporarily unavailable.' });
