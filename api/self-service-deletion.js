@@ -33,21 +33,15 @@ module.exports = async function selfServiceDeletion(req, res) {
 
     const body = req.body ?? {};
     let operation = 'configuration';
+    let step = 'environment variables';
+    let missing = [];
     const deadline = Date.now() + 45000;
     try {
-        if (!endpoint || !project || !database || !apiKey || !secret || secret.length < 32 || !bucketIds || !extraRows) {
-            throw new Error('Missing deletion configuration');
-        }
-        const config = {
-            database,
-            buckets: [...new Set(bucketIds.split(',').map((id) => id.trim()).filter(Boolean))],
-            extraRows: JSON.parse(extraRows)
-        };
-        if (!config.buckets.length || !config.extraRows || Array.isArray(config.extraRows) ||
-            typeof config.extraRows !== 'object' || Object.values(config.extraRows).some((fields) =>
-                !Array.isArray(fields) || !fields.length || fields.some((field) => typeof field !== 'string'))) {
-            throw new Error('Invalid cleanup configuration');
-        }
+        missing = ['APPWRITE_ENDPOINT', 'APPWRITE_PROJECT_ID', 'APPWRITE_SELF_DELETION_API_KEY', 'ACCOUNT_DELETION_SECRET']
+            .filter((name) => !process.env[name]?.trim());
+        if (missing.length) throw new Error('Missing deletion configuration');
+        step = 'ACCOUNT_DELETION_SECRET length';
+        if (secret.trim().length < 32) throw new Error('Invalid deletion secret');
 
         async function request(method, path, options = {}) {
             const remaining = deadline - Date.now();
@@ -76,9 +70,11 @@ module.exports = async function selfServiceDeletion(req, res) {
             }
             const params = new URLSearchParams();
             params.append('queries[]', query('equal', 'email', [email]));
+            step = 'Appwrite user lookup';
             const { users } = await request('GET', '/users?' + params);
-            const user = users.find((entry) => entry.email.toLowerCase() === email);
+            const user = users.find((entry) => entry.email?.toLowerCase() === email);
             if (user) {
+                step = 'Appwrite Email OTP';
                 const token = await request('POST', '/account/tokens/email', { public: true, body: { userId: user.$id, email } });
                 if (token.userId !== user.$id) throw new Error('Unexpected Appwrite token identity');
             }
@@ -95,6 +91,7 @@ module.exports = async function selfServiceDeletion(req, res) {
             }
             let session;
             try {
+                step = 'Appwrite code verification';
                 session = await request('POST', '/account/sessions/token', {
                     public: true, body: { userId: proof.userId, secret: body.code }
                 });
@@ -105,6 +102,7 @@ module.exports = async function selfServiceDeletion(req, res) {
                 throw error;
             }
             if (session.userId !== proof.userId || !session.$id) throw new Error('Unexpected Appwrite session identity');
+            step = 'Appwrite verification session removal';
             await request('DELETE', '/users/' + encodeURIComponent(proof.userId) + '/sessions/' + encodeURIComponent(session.$id), { missing: true });
             return res.status(200).json({ proof: seal({ ...proof, stage: 'delete', expires: Date.now() + 60 * 60000 }, secret) });
         }
@@ -113,15 +111,31 @@ module.exports = async function selfServiceDeletion(req, res) {
             return res.status(400).json({ error: 'Verify your email and confirm permanent deletion.' });
         }
 
+        step = 'cleanup configuration';
+        missing = ['APPWRITE_DATABASE_ID', 'ACCOUNT_DELETION_BUCKET_IDS', 'ACCOUNT_DELETION_EXTRA_ROWS']
+            .filter((name) => !process.env[name]?.trim());
+        if (missing.length) throw new Error('Missing cleanup configuration');
+        const config = {
+            database,
+            buckets: [...new Set(bucketIds.split(',').map((id) => id.trim()).filter(Boolean))],
+            extraRows: JSON.parse(extraRows)
+        };
+        if (!config.buckets.length || !config.extraRows || Array.isArray(config.extraRows) ||
+            typeof config.extraRows !== 'object' || Object.values(config.extraRows).some((fields) =>
+                !Array.isArray(fields) || !fields.length || fields.some((field) => typeof field !== 'string'))) {
+            throw new Error('Invalid cleanup configuration');
+        }
+        step = 'Appwrite account lookup';
         const user = await request('GET', '/users/' + encodeURIComponent(proof.userId), { missing: true });
         if (user && user.$createdAt !== proof.created) {
             return res.status(400).json({ error: 'Verify the current account before deleting it.' });
         }
+        step = 'Appwrite account cleanup';
         if (user) await deleteAccountData(request, config, user);
         return res.status(200).json({ deleted: true });
     } catch (error) {
         const stage = ['send', 'verify', 'delete'].includes(operation) ? operation : 'configuration';
-        console.error('Self-service account deletion failed', { stage, status: error.status });
+        console.error('Self-service account deletion failed', { stage, step, status: error.status, missing });
         if (error.status === 429) return res.status(429).json({ error: 'Too many attempts. Wait a few minutes and try again.' });
         return res.status(503).json({ error: 'We could not complete this step. Please try again.' });
     }
